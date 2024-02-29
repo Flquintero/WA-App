@@ -1,0 +1,3 @@
+@function pxToRem($px-size-digit) {
+    @return calc($px-size-digit / $base-font-size-digit) * 1rem;
+}

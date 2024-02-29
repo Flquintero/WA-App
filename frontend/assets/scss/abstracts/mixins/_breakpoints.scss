@@ -1,0 +1,20 @@
+// Less than 768px
+@mixin mobile() {
+    @media (max-width: #{map-get($device-breakpoints, "sm") - 1 }) {
+        @content;
+    }
+}
+
+// Between 768px and 1024px
+@mixin tablet() {
+    @media (min-width: map-get($device-breakpoints, "sm")) and (max-width: map-get($device-breakpoints, "md")) {
+        @content;
+    }
+}
+
+// More than 1024px
+@mixin desktop() {
+    @media (min-width: #{map-get($device-breakpoints, "md") + 1}) {
+        @content;
+    }
+}

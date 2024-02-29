@@ -1,0 +1,19 @@
+// Color Palette
+$dark-blue: #0d334c;
+$red: #DA0000;
+$orange: #ed6226;
+$dark-grey: #0d334c;
+
+// Color Tokens
+$primary: $orange !default;
+$secondary: $dark-blue !default;
+$error: $red !default;
+$font-color: $dark-grey !default;
+
+// Generic
+$font-family: 'Raleway', Arial, Helvetica, sans-serif !default;
+$base-font-size-digit: 16;
+$device-breakpoints: (
+    sm: 768px,
+    md: 1024px,
+);
