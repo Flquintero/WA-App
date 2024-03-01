@@ -22,10 +22,13 @@ export default defineNuxtConfig({
         },
     },
     css: ["@fortawesome/fontawesome-svg-core/styles.css"],
-    modules: [["@nuxtjs/google-fonts", { families: { Raleway: true } }]],
+    modules: [
+        ["@nuxtjs/google-fonts", { families: { Raleway: true } }],
+        "nuxt-svgo",
+    ],
     components: [
         { path: "~/components/elements", prefix: "Base" },
-        { path: "~/components/sections/recipes-list", prefix: "Recipes" },
+        { path: "~/components/pages/recipes-list", prefix: "Recipes" },
         { path: "~/components/layout", prefix: "Layout" },
 
         // It's important that this comes last if you have overrides you wish to apply

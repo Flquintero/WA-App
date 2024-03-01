@@ -6,13 +6,11 @@
                 trigger-placeholder="Choose Ingredient"
                 :menu-options="ingredients"
                 @option-chosen="setFilterParam('ingredients', $event)"
-                @option-removed="removeFilterParam('ingredients', $event)"
             />
             <BaseDropdown
                 trigger-placeholder="Choose Author"
                 :menu-options="authors"
                 @option-chosen="setFilterParam('author_email', $event)"
-                @option-removed="removeFilterParam('author_email', $event)"
             />
         </div>
     </div>
@@ -21,12 +19,28 @@
 import { authors } from "~/data/authors";
 import { ingredients } from "~/data/ingredients";
 
+const emit = defineEmits<{
+    (e: "filter-updated", value: string): void;
+}>();
+
+const filterParams = reactive({
+    ingredients: null,
+    author_email: null,
+});
+
 // Methods
-const setFilterParam = (filterType: any, filterValue: any) => {
-    const filterParams = `search[${filterType}]=${filterValue}&search[${filterType}]=${filterValue}`;
-};
-const removeFilterParam = (filterType: any, filterValue: any) => {
-    const filterParams = `search[${filterType}]=${filterValue}&search[${filterType}]=${filterValue}`;
+const setFilterParam = (filterType: string, filterValue?: string) => {
+    filterParams[filterType] = filterValue;
+    let stringFilterParams = "";
+    // Maybe not the best scalable option below, but because we only have two options this works
+    // the dynamic option I didnt like because the shape of the ingredients param was different
+    const ingredientsValue = filterParams["ingredients"];
+    const authorEmailValue = filterParams["author_email"];
+    if (ingredientsValue)
+        stringFilterParams += `&search[ingredients][0]=${ingredientsValue}`;
+    if (authorEmailValue)
+        stringFilterParams += `&search[author_email]=${authorEmailValue}`;
+    emit("filter-updated", stringFilterParams);
 };
 </script>
 <style lang="scss">
@@ -42,7 +56,7 @@ const removeFilterParam = (filterType: any, filterValue: any) => {
         margin: pxToRem(20) 0;
         button {
             margin: 0 pxToRem(10);
-            min-width: pxToRem(200);
+            width: auto;
         }
     }
 }

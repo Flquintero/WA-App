@@ -1,6 +1,5 @@
 <template>
     <main class="recipes-view">
-        <!-- To Do: add loader -->
         <h3 class="recipes-view__title">
             We don't just give you great fish, but a fun way to eat it too.
             Check out or list of recipes. Let us know which one is your
@@ -8,9 +7,10 @@
         </h3>
         <div class="recipes-view__content">
             <div class="recipes-view__content-filters">
-                <RecipesListFilters />
+                <RecipesListFilters @filter-updated="setNewFilterParams" />
             </div>
             <div class="recipes-view__content-list">
+                <!-- to do: add loader here -->
                 <RecipesListItem
                     v-for="recipe in recipesList"
                     :key="recipe.id"
@@ -26,6 +26,7 @@
 const recipesList: any = ref([]);
 const pagingLinks: any = ref(null);
 const currentPage = ref(1);
+const filterParamsString = ref("");
 
 // Methods
 
@@ -37,7 +38,7 @@ const formatRecipesList = (recipesResults: any) => {
 const getRecipes = async () => {
     try {
         const recipeListResponse = await $fetch(
-            `http://localhost:8888/api/recipes?page=${currentPage.value}&limit=24`
+            `http://localhost:8888/api/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
         );
         console.log(recipeListResponse);
         pagingLinks.value = (recipeListResponse as any).links; //deconstruct
@@ -45,7 +46,18 @@ const getRecipes = async () => {
     } catch (error) {
         // To Do: add error toast
         // would else use error reporting here: sentry, etc.
+        // for now
+        alert(
+            "Oh no! There was an error getting recipes, please try again or contact support."
+        );
     }
+};
+
+const setNewFilterParams = (filterParams: string) => {
+    recipesList.value = [];
+    filterParamsString.value = filterParams;
+    currentPage.value = 1;
+    getRecipes();
 };
 
 const bindScrollEvent = () => {

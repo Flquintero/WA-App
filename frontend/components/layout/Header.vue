@@ -6,7 +6,6 @@
                 src="https://res.cloudinary.com/wildasset/image/upload/v1591809481/logo/logo.svg"
             />
         </NuxtLink>
-        <div class="default-header__icon">🐟</div>
         <BaseAvatar include-name />
     </div>
 </template>
@@ -19,9 +18,6 @@
     &__logo {
         width: pxtoRem(120);
         height: pxToRem(40);
-    }
-    &__icon {
-        font-size: pxToRem(36);
     }
 }
 </style>

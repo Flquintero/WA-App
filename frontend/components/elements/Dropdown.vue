@@ -28,7 +28,6 @@
 <script setup lang="ts">
 const emit = defineEmits<{
     (e: "optionChosen", value: string): void;
-    (e: "optionRemoved", value: string): void;
 }>();
 // Props
 const props = defineProps({
@@ -66,7 +65,7 @@ const setChosenOption = (chosenOptionObject: any) => {
 };
 const removeChosenOption = () => {
     chosenOption.value = null;
-    emit("optionRemoved");
+    emit("optionChosen");
 };
 </script>
 <style lang="scss" scoped>
@@ -74,6 +73,8 @@ const removeChosenOption = () => {
     position: relative;
     &__trigger {
         background: $primary;
+        display: flex;
+        justify-content: center;
         border: 1px solid $border-color;
         border-radius: $border-radius;
         padding: pxToRem(10);
