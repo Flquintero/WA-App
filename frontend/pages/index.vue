@@ -6,12 +6,17 @@
             Check out or list of recipes. Let us know which one is your
             favorite.
         </h3>
-        <div class="recipes-view__list">
-            <SectionRecipesListItem
-                v-for="recipe in recipesList"
-                :key="recipe.id"
-                :recipe-item="recipe"
-            />
+        <div class="recipes-view__content">
+            <div class="recipes-view__content-filters">
+                <RecipesListFilters />
+            </div>
+            <div class="recipes-view__content-list">
+                <RecipesListItem
+                    v-for="recipe in recipesList"
+                    :key="recipe.id"
+                    :recipe-item="recipe"
+                />
+            </div>
         </div>
     </main>
 </template>
@@ -72,14 +77,18 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .recipes-view {
+    padding: $page-content-side-spacing;
     &__title {
         text-align: center;
         margin: pxToRem(30) 0;
     }
-    &__list {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+    &__content {
+        &-filters,
+        &-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
     }
 }
 </style>
