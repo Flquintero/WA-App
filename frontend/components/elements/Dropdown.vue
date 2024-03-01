@@ -2,14 +2,23 @@
     <div v-click-outside="closeMenu" class="dropdown-menu">
         <button @click="toggleMenuOpen" class="dropdown-menu__trigger">
             <slot>
-                {{ triggerPlaceholder }}
-                <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                {{ displayTriggerText }}
+                <span class="dropdown-menu__trigger-icon">
+                    <font-awesome-icon
+                        v-if="chosenOption"
+                        :icon="['fas', 'circle-xmark']"
+                        @click.stop="removeChosenOption"
+                    />
+                    <font-awesome-icon v-else :icon="['fas', 'chevron-down']" />
+                </span>
             </slot>
         </button>
         <div v-if="isMenuOpen" class="dropdown-menu__options">
             <div
                 class="dropdown-menu__options-item"
                 v-for="option in menuOptions"
+                :key="option.text"
+                @click="setChosenOption(option)"
             >
                 <span>{{ option.text }}</span>
             </div>
@@ -17,6 +26,10 @@
     </div>
 </template>
 <script setup lang="ts">
+const emit = defineEmits<{
+    (e: "optionChosen", value: string): void;
+    (e: "optionRemoved", value: string): void;
+}>();
 // Props
 const props = defineProps({
     triggerPlaceholder: {
@@ -29,7 +42,14 @@ const props = defineProps({
 const { triggerPlaceholder } = props;
 
 // Data
+const chosenOption = ref(null);
 const isMenuOpen = ref(false);
+
+// Computed
+
+const displayTriggerText = computed(
+    () => chosenOption.value || triggerPlaceholder
+);
 
 // Methods
 const closeMenu = () => {
@@ -37,6 +57,16 @@ const closeMenu = () => {
 };
 const toggleMenuOpen = () => {
     isMenuOpen.value = !isMenuOpen.value;
+};
+const setChosenOption = (chosenOptionObject: any) => {
+    const { value, text } = chosenOptionObject;
+    chosenOption.value = text;
+    emit("optionChosen", value);
+    toggleMenuOpen();
+};
+const removeChosenOption = () => {
+    chosenOption.value = null;
+    emit("optionRemoved");
 };
 </script>
 <style lang="scss" scoped>
@@ -49,6 +79,9 @@ const toggleMenuOpen = () => {
         padding: pxToRem(10);
         color: $white;
         cursor: pointer;
+        &-icon {
+            margin: 0 pxToRem(10);
+        }
     }
     &__options {
         position: absolute;

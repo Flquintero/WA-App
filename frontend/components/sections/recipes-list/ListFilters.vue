@@ -5,10 +5,14 @@
             <BaseDropdown
                 trigger-placeholder="Choose Ingredient"
                 :menu-options="ingredients"
+                @option-chosen="setFilterParam('ingredients', $event)"
+                @option-removed="removeFilterParam('ingredients', $event)"
             />
             <BaseDropdown
                 trigger-placeholder="Choose Author"
                 :menu-options="authors"
+                @option-chosen="setFilterParam('author_email', $event)"
+                @option-removed="removeFilterParam('author_email', $event)"
             />
         </div>
     </div>
@@ -16,6 +20,14 @@
 <script setup lang="ts">
 import { authors } from "~/data/authors";
 import { ingredients } from "~/data/ingredients";
+
+// Methods
+const setFilterParam = (filterType: any, filterValue: any) => {
+    const filterParams = `search[${filterType}]=${filterValue}&search[${filterType}]=${filterValue}`;
+};
+const removeFilterParam = (filterType: any, filterValue: any) => {
+    const filterParams = `search[${filterType}]=${filterValue}&search[${filterType}]=${filterValue}`;
+};
 </script>
 <style lang="scss">
 .list-filters {
