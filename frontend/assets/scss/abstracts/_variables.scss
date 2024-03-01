@@ -3,12 +3,15 @@ $dark-blue: #0d334c;
 $red: #DA0000;
 $orange: #ed6226;
 $dark-grey: #0d334c;
+$light-grey: #f3f3f3;
 
 // Color Tokens
 $primary: $orange !default;
 $secondary: $dark-blue !default;
 $error: $red !default;
 $font-color: $dark-grey !default;
+$border-color: $light-grey;
+$hover-color: $light-grey;
 
 // Generic
 $font-family: 'Raleway', Arial, Helvetica, sans-serif !default;
@@ -17,3 +20,5 @@ $device-breakpoints: (
     sm: 768px,
     md: 1024px,
 );
+$border-radius: 8px;
+$box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;

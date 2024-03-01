@@ -1,9 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
+    typescript: {
+        typeCheck: true,
+    },
     app: {
         head: {
-            title: "Recipe Browser 3000",
+            title: "Wild Alaskan Company | Recipe Browser 3000",
             htmlAttrs: {
                 lang: "en",
             },

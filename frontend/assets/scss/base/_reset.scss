@@ -61,6 +61,7 @@ a:not([class]) {
 img {
     max-width: 100%;
     display: block;
+    border-radius: inherit;
 }
 
 /* Inherit fonts for inputs and buttons */

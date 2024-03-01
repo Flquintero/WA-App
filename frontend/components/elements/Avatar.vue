@@ -6,7 +6,7 @@
         />
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .user-avatar {
     display: flex;
     align-items: center;
