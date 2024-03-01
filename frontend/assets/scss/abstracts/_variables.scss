@@ -4,6 +4,7 @@ $red: #DA0000;
 $orange: #ed6226;
 $dark-grey: #0d334c;
 $light-grey: #f3f3f3;
+$white: #ffffff;
 
 // Color Tokens
 $primary: $orange !default;
@@ -22,4 +23,5 @@ $device-breakpoints: (
 );
 $border-radius: 8px;
 $box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+$box-shadow-highlight: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 $page-content-side-spacing: 0 30px;

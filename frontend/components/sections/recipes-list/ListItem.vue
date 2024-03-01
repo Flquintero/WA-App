@@ -23,16 +23,16 @@
 </template>
 
 <script setup lang="ts">
-// Data
-const placeholderImage = ref("https://placekitten.com/300/100");
-
 // Props
 const props = defineProps({
     recipeItem: {
-        type: Object,
+        type: Object, // add typing,
     },
 });
 const { recipeItem } = props;
+
+// Data
+const placeholderImage = ref("https://placekitten.com/300/100");
 
 // Computed
 const featuredProteinIngredient = computed(() =>

@@ -8,8 +8,6 @@
 </template>
 <style lang="scss" scoped>
 .user-avatar {
-    display: flex;
-    align-items: center;
     &__image {
         width: pxToRem(35);
         height: pxToRem(35);
