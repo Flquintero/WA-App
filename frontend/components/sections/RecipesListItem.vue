@@ -1,11 +1,13 @@
 <template>
     <div class="recipes-list-item">
         <div
-            :style="{ 'background-image': `url(${recipeItem?.images[0]})` }"
+            :style="{
+                'background-image': `url(${
+                    recipeItem?.images[0] || placeholderImage
+                })`,
+            }"
             class="recipes-list-item__image"
-        >
-            <!-- <img :src="recipeItem?.images[0]" /> -->
-        </div>
+        />
         <div class="recipes-list-item__info">
             <div class="recipes-list-item__info-protein">
                 <h3>{{ featuredProteinIngredient.name }}</h3>
@@ -21,6 +23,9 @@
 </template>
 
 <script setup lang="ts">
+// Data
+const placeholderImage = ref("https://placekitten.com/300/100");
+
 // Props
 const props = defineProps({
     recipeItem: {
@@ -31,7 +36,7 @@ const { recipeItem } = props;
 
 // Computed
 const featuredProteinIngredient = computed(() =>
-    recipeItem?.ingredients.find((item) => item.type === "protein")
+    recipeItem?.ingredients.find((item: any) => item.type === "protein")
 );
 </script>
 <style lang="scss" scoped>

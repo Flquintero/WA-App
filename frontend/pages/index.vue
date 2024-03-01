@@ -16,23 +16,59 @@
     </main>
 </template>
 <script setup lang="ts">
+// Data
+
 const recipesList: any = ref([]);
+const pagingLinks: any = ref(null);
+const currentPage = ref(1);
+
+// Methods
+
+const formatRecipesList = (recipesResults: any) => {
+    recipesResults.forEach((recipe: any) => recipesList.value.push(recipe));
+};
 
 // To Do:research issue happening with useFetch, not sure if its how it interacts with api.
 const getRecipes = async () => {
     try {
         const recipeListResponse = await $fetch(
-            "http://localhost:8888/api/recipes?page=1&limit=24"
+            `http://localhost:8888/api/recipes?page=${currentPage.value}&limit=24`
         );
         console.log(recipeListResponse);
-        recipesList.value = (recipeListResponse as any).data; //deconstruct
+        pagingLinks.value = (recipeListResponse as any).links; //deconstruct
+        formatRecipesList((recipeListResponse as any).data); //deconstruct
     } catch (error) {
         // To Do: add error toast
         // would else use error reporting here: sentry, etc.
     }
 };
 
-onMounted(getRecipes);
+const bindScrollEvent = () => {
+    window.onscroll = () => {
+        const bottomOfWindow =
+            Math.max(
+                window.pageYOffset,
+                document.documentElement.scrollTop,
+                document.body.scrollTop
+            ) +
+                window.innerHeight ===
+            document.documentElement.offsetHeight;
+
+        if (bottomOfWindow) {
+            currentPage.value++;
+            if (pagingLinks.value.next) {
+                getRecipes();
+            }
+        }
+    };
+};
+
+// Lifecycle
+
+onMounted(() => {
+    getRecipes();
+    bindScrollEvent();
+});
 </script>
 <style lang="scss" scoped>
 .recipes-view {
