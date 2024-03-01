@@ -1,6 +1,6 @@
 <template>
     <div class="default-layout-wrapper">
-        <div>Navigation Menu Component Here</div>
+        <LayoutHeader />
         <slot />
     </div>
 </template>
