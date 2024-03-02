@@ -23,7 +23,7 @@ const emit = defineEmits<{
     (e: "filter-updated", value: string): void;
 }>();
 
-// Sata
+// Data
 
 const filterParams: { [k: string]: string | undefined | null } = reactive({
     ingredients: null,
