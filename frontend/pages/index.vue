@@ -21,6 +21,8 @@
     </main>
 </template>
 <script setup lang="ts">
+const runtimeConfig = useRuntimeConfig();
+
 // Data
 
 const recipesList: any = ref([]);
@@ -37,19 +39,15 @@ const formatRecipesList = (recipesResults: any) => {
 // To Do:research issue happening with useFetch, not sure if its how it interacts with api.
 const getRecipes = async () => {
     try {
-        const recipeListResponse = await $fetch(
-            `http://localhost:8888/api/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
+        const { links, data } = await $fetch(
+            // TO DO: abstract domain url
+            `${runtimeConfig.public.apiBase}/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
         );
-        console.log(recipeListResponse);
-        pagingLinks.value = (recipeListResponse as any).links; //deconstruct
-        formatRecipesList((recipeListResponse as any).data); //deconstruct
-    } catch (error) {
+        pagingLinks.value = links; //deconstruct
+        formatRecipesList(data); //deconstruct
+    } catch (error: any) {
         // To Do: add error toast
         // would else use error reporting here: sentry, etc.
-        // for now
-        alert(
-            "Oh no! There was an error getting recipes, please try again or contact support."
-        );
     }
 };
 

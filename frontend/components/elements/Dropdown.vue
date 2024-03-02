@@ -4,12 +4,17 @@
             <slot>
                 {{ displayTriggerText }}
                 <span class="dropdown-menu__trigger-icon">
-                    <font-awesome-icon
-                        v-if="chosenOption"
-                        :icon="['fas', 'circle-xmark']"
-                        @click.stop="removeChosenOption"
-                    />
-                    <font-awesome-icon v-else :icon="['fas', 'chevron-down']" />
+                    <ClientOnly>
+                        <font-awesome-icon
+                            v-if="chosenOption"
+                            :icon="['fas', 'circle-xmark']"
+                            @click.stop="removeChosenOption"
+                        />
+                        <font-awesome-icon
+                            v-else
+                            :icon="['fas', 'chevron-down']"
+                        />
+                    </ClientOnly>
                 </span>
             </slot>
         </button>

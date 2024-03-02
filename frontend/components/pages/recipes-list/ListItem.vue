@@ -1,25 +1,27 @@
 <template>
-    <div class="recipes-list-item">
-        <div
-            :style="{
-                'background-image': `url(${
-                    recipeItem?.images[0] || placeholderImage
-                })`,
-            }"
-            class="recipes-list-item__image"
-        />
-        <div class="recipes-list-item__info">
-            <div class="recipes-list-item__info-protein">
-                <h3>{{ featuredProteinIngredient.name }}</h3>
-            </div>
-            <div class="recipes-list-item__info-name">
-                <h4>{{ recipeItem?.name }}</h4>
-            </div>
-            <div class="recipes-list-item__info-author">
-                <h4>{{ recipeItem?.author_email }}</h4>
+    <NuxtLink :to="`recipe/${recipeItem?.slug}`">
+        <div class="recipes-list-item">
+            <div
+                :style="{
+                    'background-image': `url(${
+                        recipeItem?.images[0] || placeholderImage
+                    })`,
+                }"
+                class="recipes-list-item__image"
+            />
+            <div class="recipes-list-item__info">
+                <div class="recipes-list-item__info-protein">
+                    <h3>{{ featuredProteinIngredient.name }}</h3>
+                </div>
+                <div class="recipes-list-item__info-name">
+                    <h4>{{ recipeItem?.name }}</h4>
+                </div>
+                <div class="recipes-list-item__info-author">
+                    <h4>{{ recipeItem?.author_email }}</h4>
+                </div>
             </div>
         </div>
-    </div>
+    </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -47,7 +49,6 @@ const featuredProteinIngredient = computed(() =>
     min-width: pxToRem(400);
     border-radius: $border-radius;
     box-shadow: $box-shadow;
-    cursor: pointer;
     &:hover {
         background-color: $hover-color;
     }
