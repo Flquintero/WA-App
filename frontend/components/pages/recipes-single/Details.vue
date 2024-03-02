@@ -50,6 +50,7 @@ const { currentRecipe } = props;
         }
         span {
             color: $primary;
+            cursor: pointer;
         }
     }
 }
