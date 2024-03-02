@@ -25,7 +25,7 @@
             </BaseTabsMenu>
             <!-- TO DO: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
             <button class="single-recipe-view__content-button">
-                Add {{ featuredProteinIngredient.name }} to Cart
+                Add {{ featuredProteinIngredient?.name }} to Cart
             </button>
         </div>
     </main>
@@ -41,10 +41,12 @@ const currentActiveTab = ref("ingredients");
 
 // Computed
 
-const recipeImages = computed(() => currentRecipe.value.images);
-const featuredProteinIngredient = computed(() =>
-    currentRecipe.value.ingredients.find((item: any) => item.type === "protein")
-);
+const recipeImages = computed(() => currentRecipe?.value?.images);
+const featuredProteinIngredient = computed(() => {
+    currentRecipe.value?.ingredients.find(
+        (item: any) => item.type === "protein"
+    );
+});
 
 // Methods
 
@@ -54,7 +56,6 @@ const getCurrentRecipe = async () => {
         const { data } = await $fetch(
             `${runtimeConfig.public.apiBase}/recipes/${route.params.slug}`
         );
-        console.log("recipe", data);
         currentRecipe.value = data;
     } catch (error: any) {
         // To Do: add error toast
@@ -68,6 +69,16 @@ const setCurrentActiveTab = async (activeTab: string) => {
 // Lifecycle
 
 onMounted(getCurrentRecipe);
+
+// Metadata
+
+useSeoMeta({
+    title: () => currentRecipe?.value?.name as string,
+    ogTitle: () => currentRecipe?.value?.name as string,
+    description: () => currentRecipe?.value?.description as string,
+    ogDescription: () => currentRecipe?.value?.description as string,
+    ogImage: () => (currentRecipe?.value?.images[0] as string) || null,
+});
 </script>
 <style lang="scss" scoped>
 .single-recipe-view {
