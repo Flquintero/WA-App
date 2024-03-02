@@ -40,36 +40,39 @@ const emit = defineEmits<{
 import type { IFilterOption } from "~/types/recipes";
 
 // Props
+
 const props = defineProps({
     triggerPlaceholder: {
         type: String,
     },
     menuOptions: {
-        type: Array as PropType<IFilterOption[]>, // add typing,
+        type: Array as PropType<IFilterOption[]>,
     },
 });
 const { triggerPlaceholder } = props;
 
 // Data
+
 const chosenOption: Ref<IFilterOption | null> = ref(null);
 const isMenuOpen = ref(false);
 
 // Computed
 
 const displayTriggerText = computed(
-    () => chosenOption.value || triggerPlaceholder
+    () => chosenOption?.value?.text || triggerPlaceholder
 );
 
 // Methods
+
 const closeMenu = () => {
     isMenuOpen.value = false;
 };
 const toggleMenuOpen = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
-const setChosenOption = (chosenOptionObject: any) => {
+const setChosenOption = (chosenOptionObject: IFilterOption) => {
     const { value, text } = chosenOptionObject;
-    chosenOption.value = text;
+    chosenOption.value = chosenOptionObject;
     emit("optionChosen", value);
     toggleMenuOpen();
 };
