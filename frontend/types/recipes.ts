@@ -47,7 +47,7 @@ export interface IIngredient {
     unit: string;
 }
 
-//TO DO: Interface below should be in another maybe generic or element related
+//To Do: Interface below should be in another maybe generic or element related
 export interface IFilterOption {
     text: string;
     value: string;

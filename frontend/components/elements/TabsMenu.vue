@@ -1,7 +1,7 @@
 <template>
     <div class="tabs-menu">
         <div class="tabs-menu__options">
-            <!-- TO DO: Abstract tab item so its easier to control states, i.e : active -->
+            <!-- To do: Abstract tab item so its easier to control states, i.e : active -->
             <div
                 class="tabs-menu__options-item"
                 v-for="tabItem in tabOptions"
@@ -26,17 +26,20 @@ const emit = defineEmits<{
 }>();
 
 // Props
+
 const props = defineProps({
     tabOptions: {
         type: Array as PropType<string[]>,
     },
 });
 const { tabOptions } = props;
+
 // Data
 
 const currentActiveTab = ref("");
 
 // Methods
+
 const isTabItemActive = (tabItem: string) => currentActiveTab.value === tabItem;
 const setInitialTab = () =>
     (currentActiveTab.value = (tabOptions as string[])[0]);
@@ -44,7 +47,9 @@ const setCurrentActiveTab = (tabItem: string) => {
     currentActiveTab.value = tabItem;
     emit("tabChosen", tabItem);
 };
+
 // Lifecycle
+
 onMounted(setInitialTab);
 </script>
 <style lang="scss" scoped>

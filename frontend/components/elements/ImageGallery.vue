@@ -26,16 +26,20 @@
 import type { IRecipe } from "~/types/recipes";
 
 // Props
+
 const props = defineProps({
     recipeImages: {
-        type: Array as PropType<IRecipe["images"]>, // add typing,
+        type: Array as PropType<IRecipe["images"]>,
     },
 });
 const { recipeImages } = props;
 
 // Data
+
 const placeholderImage = "https://placekitten.com/400/500";
 const currentFeaturedImageUrl = ref("");
+
+// Methods
 
 const setDefaultFeaturedImage = () => {
     currentFeaturedImageUrl.value = recipeImages
@@ -45,13 +49,12 @@ const setDefaultFeaturedImage = () => {
 const setFeaturedImage = (imageUrl: string) => {
     currentFeaturedImageUrl.value = imageUrl;
 };
+
 // Lifecycle
 
 onMounted(() => {
     setDefaultFeaturedImage();
 });
-
-// Watch
 </script>
 <style lang="scss" scoped>
 .image-gallery {

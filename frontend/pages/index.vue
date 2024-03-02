@@ -10,7 +10,7 @@
                 <RecipesListFilters @filter-updated="setNewFilterParams" />
             </div>
             <div class="recipes-view__content-list">
-                <!-- to do: add loader here -->
+                <!-- To do: add loader here -->
                 <RecipesListItem
                     v-for="recipe in recipesList"
                     :key="recipe.id"
@@ -44,7 +44,7 @@ const formatRecipesList = (recipesResults: IRecipe[]) => {
     recipesResults.forEach((recipe: IRecipe) => recipesList.value.push(recipe));
 };
 
-// To Do:research issue happening with useFetch, not sure if its how it interacts with api.
+// To do:research issue happening with useFetch, not sure if its how it interacts with api.
 const getRecipes = async () => {
     try {
         const recipesListResponse: IRecipeListResponse = await $fetch(
@@ -54,7 +54,7 @@ const getRecipes = async () => {
         pagingLinks.value = links; //deconstruct
         formatRecipesList(data); //deconstruct
     } catch (error: any) {
-        // To Do: add error toast
+        // To do: add error toast
         // would else use error reporting here: sentry, etc.
     }
 };

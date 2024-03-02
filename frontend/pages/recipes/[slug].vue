@@ -6,6 +6,7 @@
             /></ClientOnly>
             All Recipes
         </NuxtLink>
+        <!-- To do: add loader here -->
         <div v-if="currentRecipe" class="single-recipe-view__content">
             <BaseImageGallery :recipe-images="currentRecipe.images" />
             <SingleRecipeDetails :current-recipe="currentRecipe" />
@@ -13,7 +14,7 @@
                 :tab-options="['ingredients', 'steps']"
                 @tab-chosen="setCurrentActiveTab"
             >
-                <!-- TO DO: Make it more dynamic maybe using <component/> -->
+                <!-- To do: Make it more dynamic maybe using <component/> -->
                 <SingleRecipeIngredients
                     v-if="currentActiveTab === 'ingredients'"
                     :recipe-ingredients="currentRecipe.ingredients"
@@ -23,7 +24,7 @@
                     :recipe-steps="currentRecipe.steps"
                 />
             </BaseTabsMenu>
-            <!-- TO DO: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
+            <!-- To do: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
             <button class="single-recipe-view__content-button">
                 Add {{ featuredProteinIngredient?.name }} to Cart
             </button>
@@ -60,7 +61,7 @@ const featuredProteinIngredient = computed(() => {
 
 // Methods
 
-// To Do:research issue happening with useFetch, not sure if its how it interacts with api.
+// To do:research issue happening with useFetch, not sure if its how it interacts with api.
 const getCurrentRecipe = async () => {
     try {
         const singleRecipeResponse: IRecipeSingleResponse = await $fetch(
@@ -69,7 +70,7 @@ const getCurrentRecipe = async () => {
         const { data } = singleRecipeResponse;
         currentRecipe.value = data;
     } catch (error: any) {
-        // To Do: add error toast
+        // To do: add error toast
         // would else use error reporting here: sentry, etc.
     }
 };
@@ -100,7 +101,7 @@ useSeoMeta({
         flex-direction: column;
         max-width: pxToRem(800);
         margin: pxToRem(30) auto;
-        // TO DO: Abstract styling / functionality into button component to make it more flexible for more variants/states
+        // To do: Abstract styling / functionality into button component to make it more flexible for more variants/states
         &-button {
             height: pxToRem(50);
             width: pxToRem(400);

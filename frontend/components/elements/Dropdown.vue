@@ -78,7 +78,7 @@ const setChosenOption = (chosenOptionObject: IFilterOption) => {
 };
 const removeChosenOption = () => {
     chosenOption.value = null;
-    // To Do: Figure out below ts issue
+    // To do: Figure out below ts issue
     // @ts-ignore
     emit("optionChosen", null);
 };

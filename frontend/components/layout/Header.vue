@@ -6,7 +6,7 @@
                 src="https://res.cloudinary.com/wildasset/image/upload/v1591809481/logo/logo.svg"
             />
         </NuxtLink>
-        <BaseAvatar include-name />
+        <BaseAvatar />
     </div>
 </template>
 <style lang="scss" scoped>

@@ -23,12 +23,15 @@ const emit = defineEmits<{
     (e: "filter-updated", value: string): void;
 }>();
 
+// Sata
+
 const filterParams: { [k: string]: string | undefined | null } = reactive({
     ingredients: null,
     author_email: null,
 });
 
 // Methods
+
 const setFilterParam = (filterType: string, filterValue?: string | null) => {
     filterParams[filterType as string] = filterValue;
     let stringFilterParams = "";

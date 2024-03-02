@@ -12,7 +12,7 @@
             <div class="recipes-list-item__info">
                 <div>
                     <div class="recipes-list-item__info-protein">
-                        <h3>{{ featuredProteinIngredient.name }}</h3>
+                        <h3>{{ featuredProteinIngredient?.name }}</h3>
                     </div>
                     <div class="recipes-list-item__info-name">
                         <h4>{{ recipeItem?.name }}</h4>
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 // Props
+
 const props = defineProps({
     recipeItem: {
         type: Object, // add typing,
@@ -35,12 +36,20 @@ const props = defineProps({
 });
 const { recipeItem } = props;
 
+// Types
+
+import type { IIngredient } from "~/types/recipes";
+
 // Data
-const placeholderImage = ref("https://placekitten.com/300/100");
+
+const placeholderImage = "https://placekitten.com/300/100";
 
 // Computed
+
 const featuredProteinIngredient = computed(() =>
-    recipeItem?.ingredients.find((item: any) => item.type === "protein")
+    recipeItem?.ingredients.find(
+        (ingredient: IIngredient) => ingredient.type === "protein"
+    )
 );
 </script>
 <style lang="scss" scoped>
