@@ -23,6 +23,10 @@
                     :recipe-steps="currentRecipe.steps"
                 />
             </BaseTabsMenu>
+            <!-- TO DO: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
+            <button class="single-recipe-view__content-button">
+                Get The Wild Alaskan Linq
+            </button>
         </div>
     </main>
 </template>
@@ -71,6 +75,20 @@ onMounted(getCurrentRecipe);
         flex-direction: column;
         max-width: pxToRem(800);
         margin: pxToRem(30) auto;
+        // TO DO: Abstract styling / functionality into button component to make it more flexible for more variants/states
+        &-button {
+            height: pxToRem(50);
+            width: pxToRem(400);
+            @include mobile {
+                width: 100%;
+            }
+            margin: auto;
+            background: $primary;
+            border: 1px solid $primary;
+            border-radius: $border-radius;
+            color: $white;
+            cursor: pointer;
+        }
     }
 }
 </style>
