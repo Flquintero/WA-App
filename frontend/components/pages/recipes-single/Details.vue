@@ -1,16 +1,16 @@
 <template>
     <div class="single-recipe-details">
         <h1 class="single-recipe-details__name">
-            {{ currentRecipe.name }}
+            {{ currentRecipe?.name }}
         </h1>
         <h4 class="single-recipe-details__email">
             <ClientOnly
                 ><font-awesome-icon :icon="['fas', 'envelope']"
             /></ClientOnly>
-            {{ currentRecipe.author_email }}
+            {{ currentRecipe?.author_email }}
         </h4>
         <p class="single-recipe-details__description">
-            {{ currentRecipe.description }}
+            {{ currentRecipe?.description }}
         </p>
     </div>
 </template>

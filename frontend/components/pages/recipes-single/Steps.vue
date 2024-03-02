@@ -8,10 +8,12 @@
     </div>
 </template>
 <script setup lang="ts">
+import type { IRecipe } from "~/types/recipes";
+
 // Props
 const props = defineProps({
     recipeSteps: {
-        type: Array, // add typing,
+        type: Array as PropType<IRecipe["steps"]>, // add typing,
     },
 });
 const { recipeSteps } = props;

@@ -27,7 +27,10 @@ export default defineNuxtConfig({
         },
     },
     css: ["@fortawesome/fontawesome-svg-core/styles.css"],
-    modules: [["@nuxtjs/google-fonts", { families: { Raleway: true } }]],
+    modules: [
+        ["@nuxtjs/google-fonts", { families: { Raleway: true } }],
+        "@nuxtjs/robots",
+    ],
     components: [
         { path: "~/components/elements", prefix: "Base" },
         { path: "~/components/pages/recipes-index", prefix: "Recipes" },

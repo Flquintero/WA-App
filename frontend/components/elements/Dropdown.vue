@@ -34,19 +34,24 @@
 const emit = defineEmits<{
     (e: "optionChosen", value: string): void;
 }>();
+
+// Types
+
+import type { IFilterOption } from "~/types/recipes";
+
 // Props
 const props = defineProps({
     triggerPlaceholder: {
         type: String,
     },
     menuOptions: {
-        type: Array, // add typing,
+        type: Array as PropType<IFilterOption[]>, // add typing,
     },
 });
 const { triggerPlaceholder } = props;
 
 // Data
-const chosenOption = ref(null);
+const chosenOption: Ref<IFilterOption | null> = ref(null);
 const isMenuOpen = ref(false);
 
 // Computed
@@ -70,7 +75,9 @@ const setChosenOption = (chosenOptionObject: any) => {
 };
 const removeChosenOption = () => {
     chosenOption.value = null;
-    emit("optionChosen");
+    // To Do: Figure out below ts issue
+    // @ts-ignore
+    emit("optionChosen", null);
 };
 </script>
 <style lang="scss" scoped>

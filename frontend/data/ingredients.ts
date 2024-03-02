@@ -1,4 +1,6 @@
-export const ingredients = [
+import type { IFilterOption } from "~/types/recipes";
+
+export const ingredients: IFilterOption[] = [
     { text: "Wild Alaskan Sockeye", value: "Sockeye" },
     { text: "Wild Alaskan Coho", value: "Coho" },
     { text: "Wild Alaskan Cod", value: "Cod" },

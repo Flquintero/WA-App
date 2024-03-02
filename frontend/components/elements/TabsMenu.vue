@@ -28,7 +28,7 @@ const emit = defineEmits<{
 // Props
 const props = defineProps({
     tabOptions: {
-        type: Array, // add typing,
+        type: Array as PropType<string[]>,
     },
 });
 const { tabOptions } = props;
@@ -38,7 +38,8 @@ const currentActiveTab = ref("");
 
 // Methods
 const isTabItemActive = (tabItem: string) => currentActiveTab.value === tabItem;
-const setInitialTab = () => (currentActiveTab.value = tabOptions[0]);
+const setInitialTab = () =>
+    (currentActiveTab.value = (tabOptions as string[])[0]);
 const setCurrentActiveTab = (tabItem: string) => {
     currentActiveTab.value = tabItem;
     emit("tabChosen", tabItem);

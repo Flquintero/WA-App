@@ -23,14 +23,14 @@ const emit = defineEmits<{
     (e: "filter-updated", value: string): void;
 }>();
 
-const filterParams = reactive({
+const filterParams: { [k: string]: string | undefined | null } = reactive({
     ingredients: null,
     author_email: null,
 });
 
 // Methods
-const setFilterParam = (filterType: string, filterValue?: string) => {
-    filterParams[filterType] = filterValue;
+const setFilterParam = (filterType: string, filterValue?: string | null) => {
+    filterParams[filterType as string] = filterValue;
     let stringFilterParams = "";
     // Maybe not the best scalable option below, but because we only have two options this works
     // the dynamic option I didnt like because the shape of the ingredients param was different

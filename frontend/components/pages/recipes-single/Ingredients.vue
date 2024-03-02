@@ -11,10 +11,14 @@
     </div>
 </template>
 <script setup lang="ts">
+// Types
+
+import type { IIngredient } from "~/types/recipes";
+
 // Props
 const props = defineProps({
     recipeIngredients: {
-        type: Array, // add typing,
+        type: Array as PropType<IIngredient[]>, // add typing,
     },
 });
 const { recipeIngredients } = props;

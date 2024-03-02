@@ -21,22 +21,26 @@
     </div>
 </template>
 <script setup lang="ts">
+// Types
+
+import type { IRecipe } from "~/types/recipes";
+
 // Props
 const props = defineProps({
     recipeImages: {
-        type: Array, // add typing,
+        type: Array as PropType<IRecipe["images"]>, // add typing,
     },
 });
 const { recipeImages } = props;
 
 // Data
-const placeholderImage = ref("https://placekitten.com/400/500");
+const placeholderImage = "https://placekitten.com/400/500";
 const currentFeaturedImageUrl = ref("");
 
 const setDefaultFeaturedImage = () => {
     currentFeaturedImageUrl.value = recipeImages
-        ? recipeImages[0]
-        : placeholderImage;
+        ? (recipeImages[0] as string)
+        : (placeholderImage as string);
 };
 const setFeaturedImage = (imageUrl: string) => {
     currentFeaturedImageUrl.value = imageUrl;

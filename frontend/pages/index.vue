@@ -23,25 +23,34 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig();
 
+// Types
+
+import type {
+    IRecipeListLinks,
+    IRecipe,
+    IRecipeListResponse,
+} from "~/types/recipes";
+
 // Data
 
-const recipesList: any = ref([]);
-const pagingLinks: any = ref(null);
+const recipesList: Ref<IRecipe[]> = ref([]);
+const pagingLinks: Ref<IRecipeListLinks | null> = ref(null);
 const currentPage = ref(1);
 const filterParamsString = ref("");
 
 // Methods
 
-const formatRecipesList = (recipesResults: any) => {
-    recipesResults.forEach((recipe: any) => recipesList.value.push(recipe));
+const formatRecipesList = (recipesResults: IRecipe[]) => {
+    recipesResults.forEach((recipe: IRecipe) => recipesList.value.push(recipe));
 };
 
 // To Do:research issue happening with useFetch, not sure if its how it interacts with api.
 const getRecipes = async () => {
     try {
-        const { links, data } = await $fetch(
+        const recipesListResponse: IRecipeListResponse = await $fetch(
             `${runtimeConfig.public.apiBase}/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
         );
+        const { links, data } = recipesListResponse;
         pagingLinks.value = links; //deconstruct
         formatRecipesList(data); //deconstruct
     } catch (error: any) {
@@ -70,7 +79,7 @@ const bindScrollEvent = () => {
 
         if (bottomOfWindow) {
             currentPage.value++;
-            if (pagingLinks.value.next) {
+            if (pagingLinks?.value?.next) {
                 getRecipes();
             }
         }

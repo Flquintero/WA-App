@@ -34,17 +34,27 @@
 const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 
+// Types
+
+import type {
+    IRecipeSingleResponse,
+    IRecipe,
+    IIngredient,
+} from "~/types/recipes";
+
 // Data
 
-const currentRecipe = ref(null);
+const currentRecipe: Ref<IRecipe | null> = ref(null);
 const currentActiveTab = ref("ingredients");
 
 // Computed
 
-const recipeImages = computed(() => currentRecipe?.value?.images);
+const recipeImages: ComputedRef<string[] | undefined> = computed(
+    () => currentRecipe?.value?.images
+);
 const featuredProteinIngredient = computed(() => {
-    currentRecipe.value?.ingredients.find(
-        (item: any) => item.type === "protein"
+    return currentRecipe.value?.ingredients.find(
+        (ingredient: IIngredient) => ingredient.type === "protein"
     );
 });
 
@@ -53,9 +63,10 @@ const featuredProteinIngredient = computed(() => {
 // To Do:research issue happening with useFetch, not sure if its how it interacts with api.
 const getCurrentRecipe = async () => {
     try {
-        const { data } = await $fetch(
+        const singleRecipeResponse: IRecipeSingleResponse = await $fetch(
             `${runtimeConfig.public.apiBase}/recipes/${route.params.slug}`
         );
+        const { data } = singleRecipeResponse;
         currentRecipe.value = data;
     } catch (error: any) {
         // To Do: add error toast
