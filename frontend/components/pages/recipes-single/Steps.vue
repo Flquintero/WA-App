@@ -13,7 +13,7 @@ import type { IRecipe } from "~/types/recipes";
 // Props
 const props = defineProps({
     recipeSteps: {
-        type: Array as PropType<IRecipe["steps"]>, // add typing,
+        type: Array as PropType<IRecipe["steps"]>,
     },
 });
 const { recipeSteps } = props;

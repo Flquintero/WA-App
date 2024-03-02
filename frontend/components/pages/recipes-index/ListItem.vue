@@ -27,18 +27,18 @@
 </template>
 
 <script setup lang="ts">
+// Types
+
+import type { IRecipe, IIngredient } from "~/types/recipes";
+
 // Props
 
 const props = defineProps({
     recipeItem: {
-        type: Object, // add typing,
+        type: Object as PropType<IRecipe>,
     },
 });
 const { recipeItem } = props;
-
-// Types
-
-import type { IIngredient } from "~/types/recipes";
 
 // Data
 

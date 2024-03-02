@@ -18,7 +18,7 @@ import type { IIngredient } from "~/types/recipes";
 // Props
 const props = defineProps({
     recipeIngredients: {
-        type: Array as PropType<IIngredient[]>, // add typing,
+        type: Array as PropType<IIngredient[]>,
     },
 });
 const { recipeIngredients } = props;

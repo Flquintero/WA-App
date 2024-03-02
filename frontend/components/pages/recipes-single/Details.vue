@@ -16,10 +16,14 @@
     </div>
 </template>
 <script setup lang="ts">
+//Type
+
+import type { IRecipe } from "~/types/recipes";
+
 // Props
 const props = defineProps({
     currentRecipe: {
-        type: Object, // add typing,
+        type: Object as PropType<IRecipe>,
     },
 });
 const { currentRecipe } = props;
