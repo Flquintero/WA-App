@@ -84,6 +84,7 @@ const removeChosenOption = () => {
         border-radius: $border-radius;
         padding: pxToRem(10);
         color: $white;
+        width: 100%;
         cursor: pointer;
         &-icon {
             margin: 0 pxToRem(10);
@@ -94,7 +95,7 @@ const removeChosenOption = () => {
         top: pxToRem(50);
         left: pxToRem(10);
         background: $white;
-        min-height: pxTorem(100);
+        min-height: pxToRem(100);
         max-height: pxToRem(250);
         min-width: pxToRem(225);
         overflow-y: auto;
@@ -102,6 +103,7 @@ const removeChosenOption = () => {
         border: 1px solid $border-color;
         box-shadow: $box-shadow-highlight;
         padding: pxToRem(20) 0;
+        z-index: 2;
         &-item {
             padding: pxToRem(5) pxToRem(10);
             margin: 0 pxToRem(5);

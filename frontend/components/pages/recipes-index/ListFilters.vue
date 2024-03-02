@@ -53,9 +53,12 @@ const setFilterParam = (filterType: string, filterValue?: string) => {
     }
     &__items {
         display: flex;
-        margin: pxToRem(20) 0;
-        button {
-            margin: 0 pxToRem(10);
+        @include mobile {
+            flex-direction: column;
+        }
+        margin: pxToRem(20);
+        .dropdown-menu {
+            margin: pxToRem(10);
             width: auto;
         }
     }
