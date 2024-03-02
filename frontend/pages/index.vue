@@ -40,7 +40,6 @@ const formatRecipesList = (recipesResults: any) => {
 const getRecipes = async () => {
     try {
         const { links, data } = await $fetch(
-            // TO DO: abstract domain url
             `${runtimeConfig.public.apiBase}/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
         );
         pagingLinks.value = links; //deconstruct

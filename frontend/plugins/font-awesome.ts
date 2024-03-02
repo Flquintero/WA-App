@@ -4,9 +4,10 @@ import {
     faChevronDown,
     faChevronLeft,
     faCircleXmark,
+    faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faChevronDown, faCircleXmark, faChevronLeft);
+library.add(faChevronDown, faCircleXmark, faChevronLeft, faEnvelope);
 
 // This is important, we are going to let Nuxt worry about the CSS
 config.autoAddCss = false;

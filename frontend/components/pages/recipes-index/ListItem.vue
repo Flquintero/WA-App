@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`recipe/${recipeItem?.slug}`">
+    <NuxtLink :to="`recipes/${recipeItem?.slug}`">
         <div class="recipes-list-item">
             <div
                 :style="{
