@@ -19,11 +19,17 @@ export interface IRecipeListMeta {
     current_page: number;
     from: number;
     last_page: number;
-    links: any;
+    links: IMetaLinkObject[];
     path: string;
     per_page: number;
     to: number;
     total: number;
+}
+
+export interface IMetaLinkObject {
+    active: boolean;
+    label: string;
+    url: string | null;
 }
 
 export interface IRecipe {
