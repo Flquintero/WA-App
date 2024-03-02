@@ -21,6 +21,10 @@
     </div>
 </template>
 <script setup lang="ts">
+const emit = defineEmits<{
+    (e: "tabChosen", value: string): void;
+}>();
+
 // Props
 const props = defineProps({
     tabOptions: {
@@ -37,6 +41,7 @@ const isTabItemActive = (tabItem: string) => currentActiveTab.value === tabItem;
 const setInitialTab = () => (currentActiveTab.value = tabOptions[0]);
 const setCurrentActiveTab = (tabItem: string) => {
     currentActiveTab.value = tabItem;
+    emit("tabChosen", tabItem);
 };
 // Lifecycle
 onMounted(setInitialTab);
@@ -55,6 +60,7 @@ onMounted(setInitialTab);
             display: flex;
             justify-content: center;
             flex-grow: 1;
+            text-transform: capitalize;
             cursor: pointer;
             &--active {
                 color: $primary;

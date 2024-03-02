@@ -23,7 +23,7 @@ const props = defineProps({
 });
 const { currentRecipe } = props;
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .single-recipe-details {
     &__name {
         text-transform: capitalize;

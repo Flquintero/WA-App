@@ -43,7 +43,7 @@ const setFilterParam = (filterType: string, filterValue?: string) => {
     emit("filter-updated", stringFilterParams);
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .list-filters {
     display: flex;
     flex-direction: column;

@@ -9,7 +9,20 @@
         <div v-if="currentRecipe" class="single-recipe-view__content">
             <BaseImageGallery :recipe-images="currentRecipe.images" />
             <SingleRecipeDetails :current-recipe="currentRecipe" />
-            <BaseTabsMenu :tab-options="['Ingredients', 'Steps']" />
+            <BaseTabsMenu
+                :tab-options="['ingredients', 'steps']"
+                @tab-chosen="setCurrentActiveTab"
+            >
+                <!-- TO DO: Make it more dynamic maybe using <component/> -->
+                <SingleRecipeIngredients
+                    v-if="currentActiveTab === 'ingredients'"
+                    :recipe-ingredients="currentRecipe.ingredients"
+                />
+                <SingleRecipeSteps
+                    v-if="currentActiveTab === 'steps'"
+                    :recipe-steps="currentRecipe.steps"
+                />
+            </BaseTabsMenu>
         </div>
     </main>
 </template>
@@ -20,6 +33,7 @@ const runtimeConfig = useRuntimeConfig();
 // Data
 
 const currentRecipe = ref(null);
+const currentActiveTab = ref("ingredients");
 
 // Computed
 
@@ -40,12 +54,17 @@ const getCurrentRecipe = async () => {
         // would else use error reporting here: sentry, etc.
     }
 };
+const setCurrentActiveTab = async (activeTab: string) => {
+    currentActiveTab.value = activeTab;
+};
 
 // Lifecycle
+
 onMounted(getCurrentRecipe);
 </script>
 <style lang="scss" scoped>
 .single-recipe-view {
+    height: 100%;
     padding: $page-content-side-spacing;
     &__content {
         display: flex;
