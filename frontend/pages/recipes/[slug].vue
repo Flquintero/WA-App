@@ -25,7 +25,7 @@
             </BaseTabsMenu>
             <!-- TO DO: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
             <button class="single-recipe-view__content-button">
-                Get The Wild Alaskan Linq
+                Add {{ featuredProteinIngredient.name }} to Cart
             </button>
         </div>
     </main>
@@ -41,7 +41,10 @@ const currentActiveTab = ref("ingredients");
 
 // Computed
 
-const recipeImages = computed(() => currentRecipe.images);
+const recipeImages = computed(() => currentRecipe.value.images);
+const featuredProteinIngredient = computed(() =>
+    currentRecipe.value.ingredients.find((item: any) => item.type === "protein")
+);
 
 // Methods
 
