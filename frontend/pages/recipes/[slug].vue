@@ -1,14 +1,12 @@
 <template>
     <main class="single-recipe-view">
         <NuxtLink to="/">
-            <ClientOnly
-                ><font-awesome-icon :icon="['fas', 'chevron-left']"
-            /></ClientOnly>
+            <!-- To do: Include Icon -->
             All Recipes
         </NuxtLink>
         <!-- To do: add loader here -->
-        <div v-if="currentRecipe" class="single-recipe-view__content">
-            <BaseImageGallery :recipe-images="currentRecipe.images" />
+        <BaseLoader v-if="isLoading" loading-text="MMM... Goodness Loading" />
+        <div v-else class="single-recipe-view__content">
             <SingleRecipeDetails :current-recipe="currentRecipe" />
             <BaseTabsMenu
                 :tab-options="['ingredients', 'steps']"
@@ -24,6 +22,7 @@
                     :recipe-steps="currentRecipe.steps"
                 />
             </BaseTabsMenu>
+            <BaseImageGallery :recipe-images="currentRecipe.images" />
             <!-- To do: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
             <button class="single-recipe-view__content-button">
                 Add {{ featuredProteinIngredient?.name }} to Cart
@@ -45,6 +44,7 @@ import type {
 
 // Data
 
+const isLoading = ref(true);
 const currentRecipe: Ref<IRecipe | null> = ref(null);
 const currentActiveTab = ref("ingredients");
 
@@ -72,6 +72,8 @@ const getCurrentRecipe = async () => {
     } catch (error: any) {
         // To do: add error toast
         // would else use error reporting here: sentry, etc.
+    } finally {
+        isLoading.value = false;
     }
 };
 const setCurrentActiveTab = async (activeTab: string) => {
@@ -92,7 +94,7 @@ useSeoMeta({
     ogImage: () => (currentRecipe?.value?.images[0] as string) || null,
 });
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .single-recipe-view {
     height: 100%;
     padding: $page-content-side-spacing;

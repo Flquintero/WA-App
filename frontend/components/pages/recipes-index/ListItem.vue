@@ -52,7 +52,7 @@ const featuredProteinIngredient = computed(() =>
     )
 );
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .recipes-list-item {
     display: flex;
     border: 1px solid $border-color;

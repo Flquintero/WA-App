@@ -52,7 +52,7 @@ const setCurrentActiveTab = (tabItem: string) => {
 
 onMounted(setInitialTab);
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .tabs-menu {
     width: 100%;
     display: flex;

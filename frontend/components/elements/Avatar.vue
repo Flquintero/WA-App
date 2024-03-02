@@ -6,7 +6,7 @@
         />
     </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
 .user-avatar {
     &__image {
         width: pxToRem(35);

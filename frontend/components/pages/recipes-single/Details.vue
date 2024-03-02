@@ -4,13 +4,14 @@
             {{ currentRecipe?.name }}
         </h1>
         <h4 class="single-recipe-details__email">
-            <ClientOnly
-                ><font-awesome-icon :icon="['fas', 'envelope']"
-            /></ClientOnly>
+            <!-- To do: Include Icon -->
             {{ currentRecipe?.author_email }}
         </h4>
+        <!-- To do: Finish Read more functionality, put it there for perfoamnce
+        reasons -->
         <p class="single-recipe-details__description">
-            {{ currentRecipe?.description }}
+            {{ currentRecipe?.description.substring(0, 50) }}...
+            <b>Read More</b>
         </p>
     </div>
 </template>
@@ -23,17 +24,20 @@ const props = defineProps({
 });
 const { currentRecipe } = props;
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .single-recipe-details {
     &__name {
         text-transform: capitalize;
         padding-bottom: pxToRem(10);
         border-bottom: 1px solid $border-color;
+        @include mobile {
+            font-size: pxToRem(24);
+        }
     }
     &__email {
         margin-top: pxToRem(20);
-        svg {
-            color: $primary;
+        @include mobile {
+            font-size: pxToRem(14);
         }
     }
     &__description {
@@ -41,6 +45,9 @@ const { currentRecipe } = props;
         background-color: $hover-color;
         padding: pxToRem(20);
         border-radius: $border-radius;
+        @include mobile {
+            font-size: pxToRem(14);
+        }
     }
 }
 </style>

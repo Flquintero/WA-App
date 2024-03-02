@@ -25,7 +25,7 @@ const { recipeIngredients } = props;
 
 // Computed
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .single-recipe-ingredients {
     display: flex;
     justify-content: center;

@@ -93,7 +93,7 @@ onMounted(() => {
     bindScrollEvent();
 });
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .recipes-view {
     padding: $page-content-side-spacing;
     &__title {

@@ -18,7 +18,7 @@ const props = defineProps({
 });
 const { recipeSteps } = props;
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .single-recipe-steps {
     max-width: pxToRem(400);
     margin: auto;

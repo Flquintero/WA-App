@@ -9,7 +9,7 @@
         <BaseAvatar />
     </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
 .default-header {
     display: flex;
     align-items: center;
