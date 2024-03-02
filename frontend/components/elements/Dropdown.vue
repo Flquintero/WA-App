@@ -4,7 +4,7 @@
             <slot>
                 {{ displayTriggerText }}
                 <span class="dropdown-menu__trigger-icon">
-                    <!-- <ClientOnly>
+                    <ClientOnly>
                         <font-awesome-icon
                             v-if="chosenOption"
                             :icon="['fas', 'circle-xmark']"
@@ -14,7 +14,7 @@
                             v-else
                             :icon="['fas', 'chevron-down']"
                         />
-                    </ClientOnly> -->
+                    </ClientOnly>
                 </span>
             </slot>
         </button>

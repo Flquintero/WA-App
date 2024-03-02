@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     modules: [
         ["@nuxtjs/google-fonts", { families: { Raleway: true } }],
         "@nuxtjs/robots",
+        "@nuxt/image",
     ],
     components: [
         { path: "~/components/elements", prefix: "Base" },

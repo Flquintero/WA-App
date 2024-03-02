@@ -8,10 +8,10 @@
             {{ currentRecipe?.author_email }}
         </h4>
         <!-- To do: Finish Read more functionality, put it there for perfoamnce
-        reasons -->
+        reasons, include full description in desktop but truncated mobile -->
         <p class="single-recipe-details__description">
             {{ currentRecipe?.description.substring(0, 50) }}...
-            <b>Read More</b>
+            <span>Read More</span>
         </p>
     </div>
 </template>
@@ -47,6 +47,9 @@ const { currentRecipe } = props;
         border-radius: $border-radius;
         @include mobile {
             font-size: pxToRem(14);
+        }
+        span {
+            color: $primary;
         }
     }
 }

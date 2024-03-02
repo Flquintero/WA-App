@@ -1,12 +1,14 @@
 <template>
     <main class="single-recipe-view">
         <NuxtLink to="/">
-            <!-- To do: Include Icon -->
+            <ClientOnly>
+                <font-awesome-icon :icon="['fas', 'chevron-left']" />
+            </ClientOnly>
             All Recipes
         </NuxtLink>
         <!-- To do: add loader here -->
         <BaseLoader v-if="isLoading" loading-text="MMM... Goodness Loading" />
-        <div v-else class="single-recipe-view__content">
+        <div v-else-if="currentRecipe" class="single-recipe-view__content">
             <SingleRecipeDetails :current-recipe="currentRecipe" />
             <BaseTabsMenu
                 :tab-options="['ingredients', 'steps']"

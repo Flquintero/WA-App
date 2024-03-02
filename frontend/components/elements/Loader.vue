@@ -16,7 +16,7 @@ const props = defineProps({
         type: String,
     },
 });
-const { isLoading, loadingText } = props;
+const { loadingText } = props;
 </script>
 <style lang="scss">
 .loader {
