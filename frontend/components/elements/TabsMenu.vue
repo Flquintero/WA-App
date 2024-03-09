@@ -52,7 +52,7 @@ const setCurrentActiveTab = (tabItem: string) => {
 
 onMounted(setInitialTab);
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .tabs-menu {
     width: 100%;
     display: flex;
@@ -62,6 +62,9 @@ onMounted(setInitialTab);
     &__options {
         display: flex;
         width: 100%;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        padding: pxToRem(15) 0;
         &-item {
             display: flex;
             justify-content: center;

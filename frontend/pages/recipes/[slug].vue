@@ -1,37 +1,3 @@
-<template>
-    <main class="single-recipe-view">
-        <NuxtLink to="/">
-            <ClientOnly>
-                <font-awesome-icon :icon="['fas', 'chevron-left']" />
-            </ClientOnly>
-            All Recipes
-        </NuxtLink>
-        <!-- To do: add loader here -->
-        <BaseLoader v-if="isLoading" loading-text="MMM... Goodness Loading" />
-        <div v-else-if="currentRecipe" class="single-recipe-view__content">
-            <SingleRecipeDetails :current-recipe="currentRecipe" />
-            <BaseTabsMenu
-                :tab-options="['ingredients', 'steps']"
-                @tab-chosen="setCurrentActiveTab"
-            >
-                <!-- To do: Make it more dynamic maybe using <component/> -->
-                <SingleRecipeIngredients
-                    v-if="currentActiveTab === 'ingredients'"
-                    :recipe-ingredients="currentRecipe.ingredients"
-                />
-                <SingleRecipeSteps
-                    v-if="currentActiveTab === 'steps'"
-                    :recipe-steps="currentRecipe.steps"
-                />
-            </BaseTabsMenu>
-            <BaseImageGallery :recipe-images="currentRecipe.images" />
-            <!-- To do: Abstract styling / functionality into button component to make it more flexible for more variants/states -->
-            <button class="single-recipe-view__content-button">
-                Add {{ featuredProteinIngredient?.name }} to Cart
-            </button>
-        </div>
-    </main>
-</template>
 <script setup lang="ts">
 const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
@@ -89,14 +55,48 @@ onMounted(getCurrentRecipe);
 // Metadata
 
 useSeoMeta({
-    title: () => currentRecipe?.value?.name as string,
-    ogTitle: () => currentRecipe?.value?.name as string,
+    title: () => `Recipe | ${currentRecipe?.value?.name}` as string,
+    ogTitle: () => `Recipe | ${currentRecipe?.value?.name}` as string,
     description: () => currentRecipe?.value?.description as string,
     ogDescription: () => currentRecipe?.value?.description as string,
     ogImage: () => (currentRecipe?.value?.images[0] as string) || null,
 });
 </script>
-<style lang="scss">
+
+<template>
+    <main class="single-recipe-view">
+        <NuxtLink to="/">
+            <ClientOnly>
+                <font-awesome-icon :icon="['fas', 'chevron-left']" />
+            </ClientOnly>
+            All Recipes
+        </NuxtLink>
+        <!-- To do: add loader here -->
+        <BaseLoader v-if="isLoading" loading-text="MMM... Goodness Loading" />
+        <div v-else-if="currentRecipe" class="single-recipe-view__content">
+            <SingleRecipeDetails :current-recipe="currentRecipe" />
+            <BaseImageGallery :recipe-images="currentRecipe.images" />
+            <BaseTabsMenu
+                :tab-options="['ingredients', 'steps']"
+                @tab-chosen="setCurrentActiveTab"
+            >
+                <!-- To do: Make it more dynamic maybe using <component/> -->
+                <SingleRecipeIngredients
+                    v-if="currentActiveTab === 'ingredients'"
+                    :recipe-ingredients="currentRecipe.ingredients"
+                />
+                <SingleRecipeSteps
+                    v-if="currentActiveTab === 'steps'"
+                    :recipe-steps="currentRecipe.steps"
+                />
+            </BaseTabsMenu>
+            <BaseButton
+                :display-text="`Get the ${featuredProteinIngredient?.name}`"
+            />
+        </div>
+    </main>
+</template>
+<style lang="scss" scoped>
 .single-recipe-view {
     height: 100%;
     padding: $page-content-side-spacing;
@@ -105,20 +105,10 @@ useSeoMeta({
         flex-direction: column;
         max-width: pxToRem(800);
         margin: pxToRem(30) auto;
-        // To do: Abstract styling / functionality into button component to make it more flexible for more variants/states
-        &-button {
-            height: pxToRem(50);
-            width: pxToRem(400);
-            @include mobile {
-                width: 100%;
-            }
-            margin: auto;
-            background: $primary;
-            border: 1px solid $primary;
-            border-radius: $border-radius;
-            color: $white;
-            cursor: pointer;
-        }
+        border: 1px solid $border-color;
+        padding: pxToRem(40);
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
     }
 }
 </style>

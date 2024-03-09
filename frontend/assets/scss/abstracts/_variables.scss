@@ -1,10 +1,11 @@
 // Color Palette
 $dark-blue: #0d334c;
 $red: #DA0000;
-$orange: #ed6226;
+$orange: #C74A14;
 $dark-grey: #0d334c;
-$light-grey: #f3f3f3;
+$light-grey: #f9f9f9;
 $white: #ffffff;
+$black: #333;
 
 // Color Tokens
 $primary: $orange !default;
@@ -13,6 +14,9 @@ $error: $red !default;
 $font-color: $dark-grey !default;
 $border-color: $light-grey;
 $hover-color: $light-grey;
+$alt-background-color: $light-grey;
+$icon-color: $secondary;
+$dark-overlay: rgba($black, .7);
 
 // Generic
 $font-family: 'Raleway', Arial, Helvetica, sans-serif !default;

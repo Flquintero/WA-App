@@ -18,7 +18,7 @@ const props = defineProps({
 });
 const { loadingText } = props;
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .loader {
     height: 100vh;
     display: flex;
@@ -30,7 +30,7 @@ const { loadingText } = props;
         flex-direction: column;
         align-items: center;
         margin-top: pxToRem(100);
-        background-color: $hover-color;
+        background-color: $alt-background-color;
         border-radius: $border-radius;
         &-icon {
             font-size: pxToRem(100);

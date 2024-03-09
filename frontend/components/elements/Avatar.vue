@@ -3,10 +3,11 @@
         <img
             class="user-avatar__image"
             src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+            alt="User"
         />
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .user-avatar {
     &__image {
         width: pxToRem(35);

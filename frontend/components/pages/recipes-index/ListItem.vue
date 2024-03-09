@@ -42,7 +42,7 @@ const { recipeItem } = props;
 
 // Data
 
-const placeholderImage = "https://placekitten.com/300/100";
+const placeholderImage = ref("https://placekitten.com/300/100");
 
 // Computed
 
@@ -52,7 +52,7 @@ const featuredProteinIngredient = computed(() =>
     )
 );
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .recipes-list-item {
     display: flex;
     border: 1px solid $border-color;

@@ -32,7 +32,7 @@
 </template>
 <script setup lang="ts">
 const emit = defineEmits<{
-    (e: "optionChosen", value: string): void;
+    (e: "optionChosen", value?: string): void;
 }>();
 
 // Types
@@ -78,12 +78,10 @@ const setChosenOption = (chosenOptionObject: IFilterOption) => {
 };
 const removeChosenOption = () => {
     chosenOption.value = null;
-    // To do: Figure out below ts issue
-    // @ts-ignore
-    emit("optionChosen", null);
+    emit("optionChosen", undefined);
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .dropdown-menu {
     position: relative;
     &__trigger {
