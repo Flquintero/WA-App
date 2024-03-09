@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { placeholderImage } from "~/data/placeholders";
+const img = useImage();
 
 // Types
 
@@ -26,6 +27,13 @@ const setFeaturedImage = (imageUrl: string) => {
 const removeFeaturedImageUrl = () => {
     featuredImageUrl.value = "";
 };
+
+const backgroundStyles = (imgUrl: string) => {
+    const formattedImgUrl = img(imgUrl);
+    return {
+        backgroundImage: `url('${formattedImgUrl}'), url('${placeholderImage}')`,
+    };
+};
 </script>
 
 <template>
@@ -38,14 +46,15 @@ const removeFeaturedImageUrl = () => {
                 <div
                     @click="setFeaturedImage(imageUrl)"
                     class="image-gallery__list-item"
+                    :style="backgroundStyles(imageUrl)"
                 >
-                    <NuxtImg
+                    <!-- <NuxtImg
                         :src="`${imageUrl}`"
                         :placeholder="placeholderImage"
                         width="50"
                         height="50"
                         :alt="`Recipe Image ${index}`"
-                    />
+                    /> -->
                 </div>
             </template>
         </div>
@@ -92,10 +101,13 @@ const removeFeaturedImageUrl = () => {
         justify-content: center;
         padding: pxToRem(20) 0;
         &-item {
+            height: pxToRem(50);
+            width: pxToRem(50);
             margin: 0 pxToRem(5);
             flex-grow: 1;
             border-radius: $border-radius;
             cursor: pointer;
+            background-size: cover;
         }
     }
 

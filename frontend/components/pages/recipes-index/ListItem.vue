@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { placeholderImage } from "~/data/placeholders";
+const img = useImage();
 
 // Types
 
@@ -22,22 +23,16 @@ const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
             (ingredient: IIngredient) => ingredient.type === "protein"
         )
     );
+const backgroundStyles = computed(() => {
+    const imgUrl = img(recipeItem?.images[0]);
+    return { backgroundImage: `url('${imgUrl}'), url('${placeholderImage}')` };
+});
 </script>
 
 <template>
     <NuxtLink :to="`/recipes/${recipeItem?.slug}`">
         <div class="recipes-list-item">
-            <div class="recipes-list-item__image">
-                <NuxtImg
-                    :src="recipeItem?.images[0]"
-                    :placeholder="placeholderImage"
-                    height="100"
-                    width="100"
-                    loading="lazy"
-                    preload
-                    alt="Recipe Image"
-                />
-            </div>
+            <div class="recipes-list-item__image" :style="backgroundStyles" />
             <div class="recipes-list-item__info">
                 <div>
                     <div class="recipes-list-item__info-protein">
