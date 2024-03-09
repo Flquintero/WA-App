@@ -24,7 +24,7 @@ const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
         )
     );
 const backgroundStyles = computed(() => {
-    const imgUrl = img(recipeItem?.images[0]);
+    const imgUrl = img(recipeItem?.images[0] as string);
     return { backgroundImage: `url('${imgUrl}'), url('${placeholderImage}')` };
 });
 </script>
