@@ -1,13 +1,22 @@
+<script setup lang="ts">
+import { companyLogoImage } from "~/data/placeholders";
+
+// Pinia
+// Use it here because we would probably need it in other components like cart, favorites and pass it down
+// Plus BaseAvatar is a display only component and want to keep it agnostic
+const userStore = useUserStore();
+</script>
+
 <template>
     <div class="default-header">
         <NuxtLink to="/">
-            <img
+            <NuxtImg
                 class="default-header__logo"
-                src="https://res.cloudinary.com/wildasset/image/upload/v1591809481/logo/logo.svg"
+                :src="companyLogoImage"
                 alt="Wild Alaskan"
             />
         </NuxtLink>
-        <BaseAvatar />
+        <BaseAvatar :user="userStore.currentUser" />
     </div>
 </template>
 

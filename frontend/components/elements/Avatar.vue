@@ -1,8 +1,23 @@
+<script setup lang="ts">
+// Type
+
+import type { IUser } from "~/types/user";
+
+// Props
+
+const props = defineProps({
+    user: {
+        type: Object as PropType<IUser>,
+    },
+});
+const { user } = props;
+</script>
+
 <template>
     <div class="user-avatar">
-        <img
+        <NuxtImg
             class="user-avatar__image"
-            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+            :src="user.profile_image"
             alt="User"
         />
     </div>

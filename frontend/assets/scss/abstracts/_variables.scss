@@ -7,6 +7,7 @@ $light-grey: #f2f2f2;
 $medium-grey: #f0ebeb;
 $white: #ffffff;
 $black: #333;
+$green: #5cb25d;
 
 // Color Tokens
 $primary: $orange !default;
@@ -18,6 +19,8 @@ $hover-color: $light-grey;
 $alt-background-color: $light-grey;
 $icon-color: $secondary;
 $dark-overlay: rgba($black, .7);
+$danger: $red;
+$success: $green;
 
 // Generic
 $font-family: 'Raleway', Arial, Helvetica, sans-serif !default;

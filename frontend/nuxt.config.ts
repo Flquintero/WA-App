@@ -31,6 +31,7 @@ export default defineNuxtConfig({
         ["@nuxtjs/google-fonts", { families: { Raleway: true } }],
         "@nuxtjs/robots",
         "@nuxt/image",
+        "@pinia/nuxt",
     ],
     components: [
         { path: "~/components/elements", prefix: "Base" },
