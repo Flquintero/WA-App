@@ -1,6 +1,11 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig();
 
+//Pinia
+
+const alertsStore = useAlertsStore();
+const { setAlert } = alertsStore;
+
 // Types
 
 import type {
@@ -32,7 +37,10 @@ const getRecipes = async () => {
         pagingLinks.value = links; //deconstruct
         formatRecipesList(data); //deconstruct
     } catch (error: any) {
-        // To do: add error toast
+        setAlert({
+            message: `An Error has occured getting recipes. Please try again or contact support`,
+            variant: "danger",
+        });
         // would else use error reporting here: sentry, etc.
     }
 };

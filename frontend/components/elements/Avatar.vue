@@ -7,7 +7,7 @@ import type { IUser } from "~/types/user";
 
 const props = defineProps({
     user: {
-        type: Object as PropType<IUser>,
+        type: Object as PropType<Ref<IUser>>,
     },
 });
 const { user } = props;
@@ -17,7 +17,7 @@ const { user } = props;
     <div class="user-avatar">
         <NuxtImg
             class="user-avatar__image"
-            :src="user.profile_image"
+            :src="user?.profile_image"
             alt="User"
         />
     </div>

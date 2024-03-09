@@ -1,4 +1,10 @@
 <script setup lang="ts">
+//Events
+
+const emit = defineEmits<{
+    (e: "ctaClicked"): void;
+}>();
+
 // Types
 
 import type { IIngredient } from "~/types/recipes";
@@ -23,6 +29,7 @@ const { recipeIngredients } = props;
                     <BaseButton
                         v-if="ingredient.type === 'protein'"
                         class="single-recipe-ingredients__button"
+                        @click="emit('ctaClicked')"
                     >
                         <span>
                             <font-awesome-icon

@@ -2,6 +2,11 @@
 const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 
+//Pinia
+
+const alertsStore = useAlertsStore();
+const { setAlert } = alertsStore;
+
 // Types
 
 import type {
@@ -39,7 +44,10 @@ const getCurrentRecipe = async () => {
         const { data } = singleRecipeResponse;
         currentRecipe.value = data;
     } catch (error: any) {
-        // To do: add error toast
+        setAlert({
+            message: `An Error has occured getting your current recipe. Please try again or contact support`,
+            variant: "danger",
+        });
         // would else use error reporting here: sentry, etc.
     } finally {
         isLoading.value = false;
@@ -47,6 +55,13 @@ const getCurrentRecipe = async () => {
 };
 const setCurrentActiveTab = async (activeTab: string) => {
     currentActiveTab.value = activeTab;
+};
+
+const setAddToCart = () => {
+    setAlert({
+        message: `You added ${featuredProteinIngredient?.value?.name} to cart!`,
+        variant: "success",
+    });
 };
 
 // Lifecycle
@@ -85,6 +100,7 @@ useSeoMeta({
                 <SingleRecipeIngredients
                     v-if="currentActiveTab === 'ingredients'"
                     :recipe-ingredients="currentRecipe.ingredients"
+                    @cta-clicked="setAddToCart"
                 />
                 <SingleRecipeSteps
                     v-if="currentActiveTab === 'steps'"
@@ -93,6 +109,7 @@ useSeoMeta({
             </BaseTabsMenu>
             <BaseButton
                 :display-text="`Get the ${featuredProteinIngredient?.name}`"
+                @click="setAddToCart"
             />
         </div>
     </main>

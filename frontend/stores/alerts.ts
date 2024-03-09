@@ -6,5 +6,11 @@ import type { IAlert } from "~/types/alerts";
 export const useAlertsStore = defineStore("alerts", () => {
     const alert: Ref<IAlert | null> = ref(null);
     const currentAlert: ComputedRef<Ref<IAlert | null>> = computed(() => alert);
-    return { currentAlert };
+    function setAlert(newAlert: IAlert) {
+        alert.value = newAlert;
+        setTimeout(() => {
+            alert.value = null;
+        }, 2000);
+    }
+    return { currentAlert, setAlert };
 });

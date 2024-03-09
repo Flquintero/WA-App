@@ -6,10 +6,10 @@ const { currentAlert } = alertsStore;
 
 // Computed
 
-const isDanger: Boolean = computed(
+const isDanger: ComputedRef<Boolean> = computed(
     () => currentAlert?.value?.variant === "danger"
 );
-const isSuccess: Boolean = computed(
+const isSuccess: ComputedRef<Boolean> = computed(
     () => currentAlert?.value?.variant === "success"
 );
 </script>
@@ -30,7 +30,7 @@ const isSuccess: Boolean = computed(
 
 <style lang="scss" scoped>
 .alert {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: pxToRem(75);
@@ -41,13 +41,18 @@ const isSuccess: Boolean = computed(
     &__content {
         min-width: pxToRem(200);
         width: auto;
-        max-width: pxToRem(250);
+        max-width: pxToRem(600);
+        @include mobile {
+            max-width: pxToRem(250);
+        }
         padding: pxToRem(10);
         border: 1px solid $border-color;
+        border-radius: $border-radius;
         display: flex;
         justify-content: center;
         align-items: center;
         box-shadow: $box-shadow;
+        font-size: pxToRem(14);
         &--danger {
             background: $danger;
             border: 1px solid $danger;
