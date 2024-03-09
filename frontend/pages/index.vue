@@ -1,25 +1,3 @@
-<template>
-    <main class="recipes-view">
-        <h3 class="recipes-view__title">
-            We don't just give you great fish, but a fun way to eat it too.
-            Check out or list of recipes. Let us know which one is your
-            favorite.
-        </h3>
-        <div class="recipes-view__content">
-            <div class="recipes-view__content-filters">
-                <RecipesListFilters @filter-updated="setNewFilterParams" />
-            </div>
-            <div class="recipes-view__content-list">
-                <!-- To do: add loader here -->
-                <RecipesListItem
-                    v-for="recipe in recipesList"
-                    :key="recipe.id"
-                    :recipe-item="recipe"
-                />
-            </div>
-        </div>
-    </main>
-</template>
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig();
 
@@ -93,6 +71,30 @@ onMounted(() => {
     bindScrollEvent();
 });
 </script>
+
+<template>
+    <main class="recipes-view">
+        <h3 class="recipes-view__title">
+            We don't just give you great fish, but a fun way to eat it too.
+            Check out or list of recipes. Let us know which one is your
+            favorite.
+        </h3>
+        <div class="recipes-view__content">
+            <div class="recipes-view__content-filters">
+                <RecipesListFilters @filter-updated="setNewFilterParams" />
+            </div>
+            <div class="recipes-view__content-list">
+                <!-- To do: add loader here -->
+                <RecipesListItem
+                    v-for="recipe in recipesList"
+                    :key="recipe.id"
+                    :recipe-item="recipe"
+                />
+            </div>
+        </div>
+    </main>
+</template>
+
 <style lang="scss" scoped>
 .recipes-view {
     padding: $page-content-side-spacing;

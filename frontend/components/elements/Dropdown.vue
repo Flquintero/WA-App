@@ -1,3 +1,57 @@
+<script setup lang="ts">
+// Types
+
+import type { IFilterOption } from "~/types/recipes";
+
+//Events
+
+const emit = defineEmits<{
+    (e: "optionChosen", value?: string): void;
+}>();
+
+// Props
+
+const props = defineProps({
+    triggerPlaceholder: {
+        type: String,
+    },
+    menuOptions: {
+        type: Array as PropType<IFilterOption[]>,
+    },
+});
+const { triggerPlaceholder } = props;
+
+// Data
+
+const chosenOption: Ref<IFilterOption | null> = ref(null);
+const isMenuOpen = ref(false);
+
+// Computed
+
+const displayTriggerText: ComputedRef<string | undefined> = computed(
+    () => chosenOption?.value?.text || triggerPlaceholder
+);
+
+// Methods
+
+const closeMenu = () => {
+    isMenuOpen.value = false;
+};
+const toggleMenuOpen = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+};
+const setChosenOption = (chosenOptionObject: IFilterOption) => {
+    const { value, text } = chosenOptionObject;
+    chosenOption.value = chosenOptionObject;
+    emit("optionChosen", value);
+    toggleMenuOpen();
+};
+const removeChosenOption = () => {
+    chosenOption.value = null;
+    emit("optionChosen", undefined);
+};
+</script>
+
 <template>
     <div v-click-outside="closeMenu" class="dropdown-menu">
         <button @click="toggleMenuOpen" class="dropdown-menu__trigger">
@@ -30,57 +84,7 @@
         </div>
     </div>
 </template>
-<script setup lang="ts">
-const emit = defineEmits<{
-    (e: "optionChosen", value?: string): void;
-}>();
 
-// Types
-
-import type { IFilterOption } from "~/types/recipes";
-
-// Props
-
-const props = defineProps({
-    triggerPlaceholder: {
-        type: String,
-    },
-    menuOptions: {
-        type: Array as PropType<IFilterOption[]>,
-    },
-});
-const { triggerPlaceholder } = props;
-
-// Data
-
-const chosenOption: Ref<IFilterOption | null> = ref(null);
-const isMenuOpen = ref(false);
-
-// Computed
-
-const displayTriggerText = computed(
-    () => chosenOption?.value?.text || triggerPlaceholder
-);
-
-// Methods
-
-const closeMenu = () => {
-    isMenuOpen.value = false;
-};
-const toggleMenuOpen = () => {
-    isMenuOpen.value = !isMenuOpen.value;
-};
-const setChosenOption = (chosenOptionObject: IFilterOption) => {
-    const { value, text } = chosenOptionObject;
-    chosenOption.value = chosenOptionObject;
-    emit("optionChosen", value);
-    toggleMenuOpen();
-};
-const removeChosenOption = () => {
-    chosenOption.value = null;
-    emit("optionChosen", undefined);
-};
-</script>
 <style lang="scss" scoped>
 .dropdown-menu {
     position: relative;

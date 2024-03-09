@@ -10,6 +10,7 @@
         <BaseAvatar />
     </div>
 </template>
+
 <style lang="scss" scoped>
 .default-header {
     display: flex;

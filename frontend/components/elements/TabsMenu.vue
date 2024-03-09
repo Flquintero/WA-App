@@ -1,26 +1,6 @@
-<template>
-    <div class="tabs-menu">
-        <div class="tabs-menu__options">
-            <!-- To do: Abstract tab item so its easier to control states, i.e : active -->
-            <div
-                class="tabs-menu__options-item"
-                v-for="tabItem in tabOptions"
-                :key="tabItem"
-                @click="setCurrentActiveTab(tabItem)"
-            >
-                <span
-                    :class="{
-                        'tabs-menu__options-item--active':
-                            isTabItemActive(tabItem),
-                    }"
-                    >{{ tabItem }}</span
-                >
-            </div>
-        </div>
-        <slot />
-    </div>
-</template>
 <script setup lang="ts">
+// Events
+
 const emit = defineEmits<{
     (e: "tabChosen", value: string): void;
 }>();
@@ -52,6 +32,30 @@ const setCurrentActiveTab = (tabItem: string) => {
 
 onMounted(setInitialTab);
 </script>
+
+<template>
+    <div class="tabs-menu">
+        <div class="tabs-menu__options">
+            <!-- To do: Abstract tab item so its easier to control states, i.e : active -->
+            <div
+                class="tabs-menu__options-item"
+                v-for="tabItem in tabOptions"
+                :key="tabItem"
+                @click="setCurrentActiveTab(tabItem)"
+            >
+                <span
+                    :class="{
+                        'tabs-menu__options-item--active':
+                            isTabItemActive(tabItem),
+                    }"
+                    >{{ tabItem }}</span
+                >
+            </div>
+        </div>
+        <slot />
+    </div>
+</template>
+
 <style lang="scss" scoped>
 .tabs-menu {
     width: 100%;

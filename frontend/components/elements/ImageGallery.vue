@@ -1,3 +1,33 @@
+<script setup lang="ts">
+import { placeholderImage } from "~/data/placeholders";
+
+// Types
+
+import type { IRecipe } from "~/types/recipes";
+
+// Props
+
+const props = defineProps({
+    recipeImages: {
+        type: Array as PropType<IRecipe["images"]>,
+    },
+});
+const { recipeImages } = props;
+
+// Data
+
+const featuredImageUrl = ref("");
+
+// Methods
+
+const setFeaturedImage = (imageUrl: string) => {
+    featuredImageUrl.value = imageUrl;
+};
+const removeFeaturedImageUrl = () => {
+    featuredImageUrl.value = "";
+};
+</script>
+
 <template>
     <div v-if="recipeImages" class="image-gallery">
         <div class="image-gallery__icon">
@@ -36,36 +66,7 @@
         </BaseModal>
     </div>
 </template>
-<script setup lang="ts">
-// Types
 
-import type { IRecipe } from "~/types/recipes";
-
-// Props
-
-const props = defineProps({
-    recipeImages: {
-        type: Array as PropType<IRecipe["images"]>,
-    },
-});
-const { recipeImages } = props;
-
-// Data
-
-// Would ask design team to come up with an image not found placeholder maybe or something to cross promote
-const placeholderImage =
-    "https://res.cloudinary.com/wildasset/image/upload/v1591809481/logo/logo.svg";
-const featuredImageUrl = ref("");
-
-// Methods
-
-const setFeaturedImage = (imageUrl: string) => {
-    featuredImageUrl.value = imageUrl;
-};
-const removeFeaturedImageUrl = () => {
-    featuredImageUrl.value = "";
-};
-</script>
 <style lang="scss" scoped>
 @mixin foto-icon {
     display: flex;
@@ -104,6 +105,8 @@ const removeFeaturedImageUrl = () => {
         }
         &-image {
             padding: pxToRem(30);
+            max-width: pxToRem(300);
+            max-height: pxToRem(300);
             img {
                 border-radius: $border-radius;
             }

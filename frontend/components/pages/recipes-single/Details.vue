@@ -24,10 +24,11 @@ const toggleShowMore = () => {
 
 // Computed
 
-const descriptionDisplayText = computed((): string | undefined => {
+const descriptionDisplayText: ComputedRef<string | undefined> = computed(() => {
     return isShowMore.value ? currentRecipe?.description : `${currentRecipe?.description.substring(0, 50)}...`
 })
 </script>
+
 <template>
     <div class="single-recipe-details">
         <h1 class="single-recipe-details__name">
@@ -46,6 +47,7 @@ const descriptionDisplayText = computed((): string | undefined => {
         </p>
     </div>
 </template>
+
 <style lang="scss" scoped>
 .single-recipe-details {
     &__name {

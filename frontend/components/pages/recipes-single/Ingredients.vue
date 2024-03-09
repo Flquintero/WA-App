@@ -1,3 +1,18 @@
+<script setup lang="ts">
+// Types
+
+import type { IIngredient } from "~/types/recipes";
+
+// Props
+
+const props = defineProps({
+    recipeIngredients: {
+        type: Array as PropType<IIngredient[]>,
+    },
+});
+const { recipeIngredients } = props;
+</script>
+
 <template>
     <div class="single-recipe-ingredients">
         <ul>
@@ -21,20 +36,7 @@
         </ul>
     </div>
 </template>
-<script setup lang="ts">
-// Types
 
-import type { IIngredient } from "~/types/recipes";
-
-// Props
-
-const props = defineProps({
-    recipeIngredients: {
-        type: Array as PropType<IIngredient[]>,
-    },
-});
-const { recipeIngredients } = props;
-</script>
 <style lang="scss" scoped>
 .single-recipe-ingredients {
     display: flex;

@@ -1,14 +1,43 @@
+<script setup lang="ts">
+import { placeholderImage } from "~/data/placeholders";
+
+// Types
+
+import type { IRecipe, IIngredient } from "~/types/recipes";
+
+// Props
+
+const props = defineProps({
+    recipeItem: {
+        type: Object as PropType<IRecipe>,
+    },
+});
+const { recipeItem } = props;
+
+// Computed
+
+const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
+    computed(() =>
+        recipeItem?.ingredients.find(
+            (ingredient: IIngredient) => ingredient.type === "protein"
+        )
+    );
+</script>
+
 <template>
     <NuxtLink :to="`/recipes/${recipeItem?.slug}`">
         <div class="recipes-list-item">
-            <div
-                :style="{
-                    'background-image': `url(${
-                        recipeItem?.images[0] || placeholderImage
-                    })`,
-                }"
-                class="recipes-list-item__image"
-            />
+            <div class="recipes-list-item__image">
+                <NuxtImg
+                    :src="recipeItem?.images[0]"
+                    :placeholder="placeholderImage"
+                    height="100"
+                    width="100"
+                    loading="lazy"
+                    preload
+                    alt="Recipe Image"
+                />
+            </div>
             <div class="recipes-list-item__info">
                 <div>
                     <div class="recipes-list-item__info-protein">
@@ -26,32 +55,6 @@
     </NuxtLink>
 </template>
 
-<script setup lang="ts">
-// Types
-
-import type { IRecipe, IIngredient } from "~/types/recipes";
-
-// Props
-
-const props = defineProps({
-    recipeItem: {
-        type: Object as PropType<IRecipe>,
-    },
-});
-const { recipeItem } = props;
-
-// Data
-
-const placeholderImage = ref("https://placekitten.com/300/100");
-
-// Computed
-
-const featuredProteinIngredient = computed(() =>
-    recipeItem?.ingredients.find(
-        (ingredient: IIngredient) => ingredient.type === "protein"
-    )
-);
-</script>
 <style lang="scss" scoped>
 .recipes-list-item {
     display: flex;
@@ -71,6 +74,7 @@ const featuredProteinIngredient = computed(() =>
         min-width: pxToRem(100);
         width: pxToRem(100);
         height: pxToRem(100);
+        border-right: 1px solid $border-color;
         background-size: cover;
         display: flex;
         justify-content: center;

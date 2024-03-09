@@ -1,3 +1,18 @@
+<script setup lang="ts">
+// Types
+
+import type { IRecipe } from "~/types/recipes";
+
+// Props
+
+const props = defineProps({
+    recipeSteps: {
+        type: Array as PropType<IRecipe["steps"]>,
+    },
+});
+const { recipeSteps } = props;
+</script>
+
 <template>
     <div class="single-recipe-steps">
         <ol>
@@ -7,17 +22,7 @@
         </ol>
     </div>
 </template>
-<script setup lang="ts">
-import type { IRecipe } from "~/types/recipes";
 
-// Props
-const props = defineProps({
-    recipeSteps: {
-        type: Array as PropType<IRecipe["steps"]>,
-    },
-});
-const { recipeSteps } = props;
-</script>
 <style lang="scss" scoped>
 .single-recipe-steps {
     max-width: pxToRem(400);

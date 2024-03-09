@@ -3,7 +3,8 @@ $dark-blue: #0d334c;
 $red: #DA0000;
 $orange: #C74A14;
 $dark-grey: #0d334c;
-$light-grey: #f9f9f9;
+$light-grey: #f2f2f2;
+$medium-grey: #f0ebeb;
 $white: #ffffff;
 $black: #333;
 
@@ -12,7 +13,7 @@ $primary: $orange !default;
 $secondary: $dark-blue !default;
 $error: $red !default;
 $font-color: $dark-grey !default;
-$border-color: $light-grey;
+$border-color: $medium-grey;
 $hover-color: $light-grey;
 $alt-background-color: $light-grey;
 $icon-color: $secondary;

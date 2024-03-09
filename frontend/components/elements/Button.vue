@@ -8,6 +8,7 @@ const props = defineProps({
 });
 const { displayText } = props;
 </script>
+
 <template>
     <button class="button">
         <slot>
@@ -15,6 +16,7 @@ const { displayText } = props;
         </slot>
     </button>
 </template>
+
 <style lang="scss" scoped>
 .button {
     width: 100%;

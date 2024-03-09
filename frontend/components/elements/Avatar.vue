@@ -7,6 +7,7 @@
         />
     </div>
 </template>
+
 <style lang="scss" scoped>
 .user-avatar {
     &__image {

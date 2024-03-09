@@ -21,11 +21,12 @@ const currentActiveTab = ref("ingredients");
 const recipeImages: ComputedRef<string[] | undefined> = computed(
     () => currentRecipe?.value?.images
 );
-const featuredProteinIngredient = computed(() => {
-    return currentRecipe.value?.ingredients.find(
-        (ingredient: IIngredient) => ingredient.type === "protein"
-    );
-});
+const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
+    computed(() => {
+        return currentRecipe.value?.ingredients.find(
+            (ingredient: IIngredient) => ingredient.type === "protein"
+        );
+    });
 
 // Methods
 

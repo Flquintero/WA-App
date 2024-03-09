@@ -1,8 +1,11 @@
 <script setup lang="ts">
+// Events
+
 const emit = defineEmits<{
     (e: "close"): void;
 }>();
 </script>
+
 <template>
     <div class="modal">
         <div class="modal__content">
@@ -21,13 +24,14 @@ const emit = defineEmits<{
         </div>
     </div>
 </template>
+
 <style lang="scss" scoped>
 .modal {
     position: fixed;
     top: 0;
     background: $dark-overlay;
     height: 100%;
-    width: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;

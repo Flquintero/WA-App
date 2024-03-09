@@ -1,23 +1,8 @@
-<template>
-    <div class="list-filters">
-        <h3 class="list-filters__label">Filter By:</h3>
-        <div class="list-filters__items">
-            <BaseDropdown
-                trigger-placeholder="Choose Ingredient"
-                :menu-options="ingredients"
-                @option-chosen="setFilterParam('ingredients', $event)"
-            />
-            <BaseDropdown
-                trigger-placeholder="Choose Author"
-                :menu-options="authors"
-                @option-chosen="setFilterParam('author_email', $event)"
-            />
-        </div>
-    </div>
-</template>
 <script setup lang="ts">
 import { authors } from "~/data/authors";
 import { ingredients } from "~/data/ingredients";
+
+// Events
 
 const emit = defineEmits<{
     (e: "filter-updated", value: string): void;
@@ -46,6 +31,25 @@ const setFilterParam = (filterType: string, filterValue?: string | null) => {
     emit("filter-updated", stringFilterParams);
 };
 </script>
+
+<template>
+    <div class="list-filters">
+        <h3 class="list-filters__label">Filter By:</h3>
+        <div class="list-filters__items">
+            <BaseDropdown
+                trigger-placeholder="Choose Ingredient"
+                :menu-options="ingredients"
+                @option-chosen="setFilterParam('ingredients', $event)"
+            />
+            <BaseDropdown
+                trigger-placeholder="Choose Author"
+                :menu-options="authors"
+                @option-chosen="setFilterParam('author_email', $event)"
+            />
+        </div>
+    </div>
+</template>
+
 <style lang="scss" scoped>
 .list-filters {
     display: flex;
