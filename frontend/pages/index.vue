@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig();
+import { placeholderImage } from "~/data/placeholders";
 
 //Pinia
 
@@ -78,6 +79,18 @@ onMounted(() => {
     getRecipes();
     bindScrollEvent();
 });
+
+// SEO
+
+useSeoMeta({
+    title: () => "Wild Alaskan Company | Recipe Browser 3000" as string,
+    ogTitle: () => "Wild Alaskan Company | Recipe Browser 3000" as string,
+    description: () =>
+        "Recipe Browser 3000 offers great quality recipes made with the best fish sold right here in Wild Alaskan Company" as string,
+    ogDescription: () =>
+        "Recipe Browser 3000 offers great quality recipes made with the best fish sold right here in Wild Alaskan Company" as string,
+    ogImage: () => (placeholderImage as string) || null,
+});
 </script>
 
 <template>
@@ -92,12 +105,17 @@ onMounted(() => {
                 <RecipesListFilters @filter-updated="setNewFilterParams" />
             </div>
             <div class="recipes-view__content-list">
-                <!-- To do: add loader here -->
-                <RecipesListItem
-                    v-for="recipe in recipesList"
-                    :key="recipe.id"
-                    :recipe-item="recipe"
+                <BaseLoader
+                    v-if="!recipesList.length"
+                    loadingText="Loading Goodness!"
                 />
+                <template v-else>
+                    <RecipesListItem
+                        v-for="recipe in recipesList"
+                        :key="recipe.id"
+                        :recipe-item="recipe"
+                    />
+                </template>
             </div>
         </div>
     </main>
