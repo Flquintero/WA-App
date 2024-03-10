@@ -32,7 +32,6 @@ const { loadingText } = props;
         flex-direction: column;
         align-items: center;
         margin-top: pxToRem(100);
-        background-color: $alt-background-color;
         border-radius: $border-radius;
         &-icon {
             font-size: pxToRem(100);
