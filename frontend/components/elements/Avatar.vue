@@ -16,8 +16,10 @@ const { user } = props;
 <template>
     <div class="user-avatar">
         <NuxtImg
+            provider="cloudinary"
             class="user-avatar__image"
             :src="user?.profile_image"
+            format="webp"
             alt="User"
         />
     </div>

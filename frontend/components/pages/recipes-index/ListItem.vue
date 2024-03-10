@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { placeholderImage } from "~/data/placeholders";
-const img = useImage();
 
 // Types
 
@@ -23,16 +22,24 @@ const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
             (ingredient: IIngredient) => ingredient.type === "protein"
         )
     );
-const backgroundStyles = computed(() => {
-    const imgUrl = img(recipeItem?.images[0] as string);
-    return { backgroundImage: `url('${imgUrl}'), url('${placeholderImage}')` };
-});
 </script>
 
 <template>
     <NuxtLink :to="`/recipes/${recipeItem?.slug}`">
         <div class="recipes-list-item">
-            <div class="recipes-list-item__image" :style="backgroundStyles" />
+            <div class="recipes-list-item__image">
+                <NuxtImg
+                    preload
+                    provider="cloudinary"
+                    :src="recipeItem?.images[0]"
+                    :placeholder="placeholderImage"
+                    :width="100"
+                    :height="100"
+                    alt="Recipe Image"
+                    format="webp"
+                    fit="thumb"
+                />
+            </div>
             <div class="recipes-list-item__info">
                 <div>
                     <div class="recipes-list-item__info-protein">
@@ -70,7 +77,6 @@ const backgroundStyles = computed(() => {
         width: pxToRem(100);
         height: pxToRem(100);
         border-right: 1px solid $border-color;
-        background-size: cover;
         display: flex;
         justify-content: center;
         align-items: center;

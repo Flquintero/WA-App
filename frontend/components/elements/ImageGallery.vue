@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { placeholderImage } from "~/data/placeholders";
-const img = useImage();
 
 // Types
 
@@ -27,13 +26,6 @@ const setFeaturedImage = (imageUrl: string) => {
 const removeFeaturedImageUrl = () => {
     featuredImageUrl.value = "";
 };
-
-const backgroundStyles = (imgUrl: string) => {
-    const formattedImgUrl = img(imgUrl);
-    return {
-        backgroundImage: `url('${formattedImgUrl}'), url('${placeholderImage}')`,
-    };
-};
 </script>
 
 <template>
@@ -46,8 +38,18 @@ const backgroundStyles = (imgUrl: string) => {
                 <div
                     @click="setFeaturedImage(imageUrl)"
                     class="image-gallery__list-item"
-                    :style="backgroundStyles(imageUrl)"
-                />
+                >
+                    <NuxtImg
+                        provider="cloudinary"
+                        :src="imageUrl"
+                        :placeholder="placeholderImage"
+                        height="50"
+                        width="50"
+                        :alt="`Recipe Image ${index}`"
+                        format="webp"
+                        fit="thumb"
+                    />
+                </div>
             </template>
         </div>
         <BaseModal v-if="featuredImageUrl" @close="removeFeaturedImageUrl">
@@ -59,8 +61,11 @@ const backgroundStyles = (imgUrl: string) => {
             <template #modal-body>
                 <div class="image-gallery__modal-image">
                     <NuxtImg
-                        :src="`${featuredImageUrl}`"
+                        provider="cloudinary"
+                        :src="featuredImageUrl"
                         :placeholder="placeholderImage"
+                        alt="Recipe Featured Image"
+                        format="webp"
                     />
                 </div>
             </template>
@@ -99,7 +104,6 @@ const backgroundStyles = (imgUrl: string) => {
             flex-grow: 1;
             border-radius: $border-radius;
             cursor: pointer;
-            background-size: cover;
         }
     }
 
