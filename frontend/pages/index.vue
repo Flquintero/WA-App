@@ -31,12 +31,11 @@ const formatRecipesList = (recipesResults: IRecipe[]) => {
 // To do: research useFetch to leverage
 const getRecipes = async () => {
     try {
-        const recipesListResponse: IRecipeListResponse = await $fetch(
+        const { links, data }: IRecipeListResponse = await $fetch(
             `${runtimeConfig.public.apiBase}/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
         );
-        const { links, data } = recipesListResponse;
-        pagingLinks.value = links; //deconstruct
-        formatRecipesList(data); //deconstruct
+        pagingLinks.value = links;
+        formatRecipesList(data);
     } catch (error: any) {
         setAlert({
             message: `An Error has occured getting recipes. Please try again or contact support`,
@@ -75,8 +74,8 @@ const bindScrollEvent = () => {
 
 // Init
 
-useLazyAsyncData("listQuery", () => {
-    getRecipes();
+useLazyAsyncData("listQuery", (): Promise<void> => {
+    return getRecipes();
 });
 
 // Lifecycle

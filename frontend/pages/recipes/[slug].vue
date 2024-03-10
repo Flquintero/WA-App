@@ -38,10 +38,9 @@ const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
 // To do: research useFetch to leverage.
 const getCurrentRecipe = async () => {
     try {
-        const singleRecipeResponse: IRecipeSingleResponse = await $fetch(
+        const { data }: IRecipeSingleResponse = await $fetch(
             `${runtimeConfig.public.apiBase}/recipes/${route.params.slug}`
         );
-        const { data } = singleRecipeResponse;
         currentRecipe.value = data;
     } catch (error: any) {
         setAlert({
@@ -66,8 +65,8 @@ const setAddToCart = () => {
 
 // Init
 
-useLazyAsyncData(`${route.params.slug}Query`, () => {
-    getCurrentRecipe();
+useLazyAsyncData(`${route.params.slug}Query`, (): Promise<void> => {
+    return getCurrentRecipe();
 });
 
 // Metadata
