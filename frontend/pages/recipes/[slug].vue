@@ -35,7 +35,7 @@ const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
 
 // Methods
 
-// To do:research issue happening with useFetch, not sure if its how it interacts with api.
+// To do: research useFetch to leverage.
 const getCurrentRecipe = async () => {
     try {
         const singleRecipeResponse: IRecipeSingleResponse = await $fetch(
@@ -64,9 +64,11 @@ const setAddToCart = () => {
     });
 };
 
-// Lifecycle
+// Init
 
-onMounted(getCurrentRecipe);
+useLazyAsyncData(`${route.params.slug}Query`, () => {
+    getCurrentRecipe();
+});
 
 // Metadata
 
@@ -87,7 +89,6 @@ useSeoMeta({
             </ClientOnly>
             All Recipes
         </NuxtLink>
-        <!-- To do: add loader here -->
         <BaseLoader v-if="isLoading" loading-text="MMM... Goodness Loading" />
         <div v-else-if="currentRecipe" class="single-recipe-view__content">
             <SingleRecipeDetails :current-recipe="currentRecipe" />

@@ -28,7 +28,7 @@ const formatRecipesList = (recipesResults: IRecipe[]) => {
     recipesResults.forEach((recipe: IRecipe) => recipesList.value.push(recipe));
 };
 
-// To do:research issue happening with useFetch, not sure if its how it interacts with api.
+// To do: research useFetch to leverage
 const getRecipes = async () => {
     try {
         const recipesListResponse: IRecipeListResponse = await $fetch(
@@ -73,10 +73,15 @@ const bindScrollEvent = () => {
     };
 };
 
+// Init
+
+useLazyAsyncData("listQuery", () => {
+    getRecipes();
+});
+
 // Lifecycle
 
 onMounted(() => {
-    getRecipes();
     bindScrollEvent();
 });
 
@@ -96,9 +101,8 @@ useSeoMeta({
 <template>
     <main class="recipes-view">
         <h3 class="recipes-view__title">
-            We don't just give you great fish, but a fun way to eat it too.
-            Check out or list of recipes. Let us know which one is your
-            favorite.
+            We don't just offer you great fish, but a fun way to eat it too.
+            Check out our recipes.
         </h3>
         <div class="recipes-view__content">
             <div class="recipes-view__content-filters">
