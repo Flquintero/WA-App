@@ -65,8 +65,8 @@ const setAddToCart = () => {
 
 // Init
 
-useLazyAsyncData(`${route.params.slug}Query`, (): Promise<void> => {
-    return getCurrentRecipe();
+useLazyAsyncData(`${route.params.slug}Query`, (): any => {
+    getCurrentRecipe();
 });
 
 // Metadata

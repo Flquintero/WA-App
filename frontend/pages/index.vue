@@ -74,8 +74,8 @@ const bindScrollEvent = () => {
 
 // Init
 
-useLazyAsyncData("listQuery", (): Promise<void> => {
-    return getRecipes();
+useLazyAsyncData("listQuery", (): any => {
+    getRecipes();
 });
 
 // Lifecycle
