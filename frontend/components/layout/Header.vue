@@ -27,7 +27,7 @@ const userStore = useUserStore();
     justify-content: space-between;
     padding: pxToRem(20);
     &__logo {
-        width: pxtoRem(120);
+        width: pxToRem(120);
         height: pxToRem(40);
     }
 }
