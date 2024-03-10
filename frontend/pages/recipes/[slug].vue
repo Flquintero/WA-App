@@ -35,7 +35,7 @@ const featuredProteinIngredient: ComputedRef<IIngredient | undefined> =
 
 // Methods
 
-// To do: research useFetch to leverage.
+// To do: research useFetch to leverage and decouple getting the data from setting it in the same function
 const setCurrentRecipe = async () => {
     try {
         const { data }: IRecipeSingleResponse = await $fetch(

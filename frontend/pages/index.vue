@@ -28,7 +28,7 @@ const formatRecipesList = (recipesResults: IRecipe[]) => {
     recipesResults.forEach((recipe: IRecipe) => recipesList.value.push(recipe));
 };
 
-// To do: research useFetch to leverage
+// To do: research useFetch to leverage and decouple getting the data from setting it in the same function
 const setRecipes = async () => {
     try {
         const { links, data }: IRecipeListResponse = await $fetch(
