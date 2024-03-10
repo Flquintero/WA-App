@@ -55,6 +55,7 @@ const { recipeIngredients } = props;
         }
         li {
             margin-bottom: pxToRem(5);
+            line-height: 1.5;
         }
     }
     // To do: make button component have a small variant maybe

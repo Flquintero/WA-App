@@ -31,6 +31,7 @@ const { recipeSteps } = props;
         margin-top: pxToRem(30);
         li {
             margin-bottom: pxToRem(10);
+            line-height: 1.5;
         }
     }
 }
