@@ -29,7 +29,7 @@ const formatRecipesList = (recipesResults: IRecipe[]) => {
 };
 
 // To do: research useFetch to leverage
-const getRecipes = async () => {
+const setRecipes = async () => {
     try {
         const { links, data }: IRecipeListResponse = await $fetch(
             `${runtimeConfig.public.apiBase}/recipes?page=${currentPage.value}&limit=24${filterParamsString.value}`
@@ -49,7 +49,7 @@ const setNewFilterParams = (filterParams: string) => {
     recipesList.value = [];
     filterParamsString.value = filterParams;
     currentPage.value = 1;
-    getRecipes();
+    setRecipes();
 };
 
 const bindScrollEvent = () => {
@@ -66,7 +66,7 @@ const bindScrollEvent = () => {
         if (bottomOfWindow) {
             currentPage.value++;
             if (pagingLinks?.value?.next) {
-                getRecipes();
+                setRecipes();
             }
         }
     };
@@ -75,7 +75,7 @@ const bindScrollEvent = () => {
 // Init
 
 useLazyAsyncData("listQuery", (): any => {
-    getRecipes();
+    setRecipes();
 });
 
 // Lifecycle
