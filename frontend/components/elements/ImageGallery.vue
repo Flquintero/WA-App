@@ -47,15 +47,7 @@ const backgroundStyles = (imgUrl: string) => {
                     @click="setFeaturedImage(imageUrl)"
                     class="image-gallery__list-item"
                     :style="backgroundStyles(imageUrl)"
-                >
-                    <!-- <NuxtImg
-                        :src="`${imageUrl}`"
-                        :placeholder="placeholderImage"
-                        width="50"
-                        height="50"
-                        :alt="`Recipe Image ${index}`"
-                    /> -->
-                </div>
+                />
             </template>
         </div>
         <BaseModal v-if="featuredImageUrl" @close="removeFeaturedImageUrl">
