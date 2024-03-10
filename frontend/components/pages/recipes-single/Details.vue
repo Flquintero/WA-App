@@ -74,7 +74,8 @@ const descriptionDisplayText: ComputedRef<string | undefined> = computed(() => {
         padding: pxToRem(20);
         border-radius: $border-radius;
         height: auto;
-        max-height: 500px;
+        max-height: pxToRem(500);
+        line-height: 1.5;
         @include mobile {
             font-size: pxToRem(14);
         }

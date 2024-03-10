@@ -40,6 +40,7 @@ const removeFeaturedImageUrl = () => {
                     class="image-gallery__list-item"
                 >
                     <NuxtImg
+                        preload
                         provider="cloudinary"
                         :src="imageUrl"
                         :placeholder="placeholderImage"
@@ -61,6 +62,7 @@ const removeFeaturedImageUrl = () => {
             <template #modal-body>
                 <div class="image-gallery__modal-image">
                     <NuxtImg
+                        preload
                         provider="cloudinary"
                         :src="featuredImageUrl"
                         :placeholder="placeholderImage"
