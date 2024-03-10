@@ -50,6 +50,9 @@ const { recipeIngredients } = props;
     justify-content: center;
     ul {
         margin-top: pxToRem(30);
+        @include mobile {
+            max-width: pxToRem(250);
+        }
         li {
             margin-bottom: pxToRem(5);
         }
