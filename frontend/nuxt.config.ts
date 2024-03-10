@@ -26,6 +26,9 @@ export default defineNuxtConfig({
             },
         },
     },
+    nitro: {
+        compressPublicAssets: true,
+    },
     css: ["@fortawesome/fontawesome-svg-core/styles.css"],
     modules: [
         ["@nuxtjs/google-fonts", { families: { Raleway: true } }],
